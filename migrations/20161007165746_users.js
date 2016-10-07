@@ -1,10 +1,6 @@
 exports.up = function(knex) {
   return knex.schema.createTable('users', (table) => {
     table.increments();
-    table.integer('date_id')
-      .notNullable();
-    table.foreign('date_id')
-      .references('day.id');
     table.integer('tot_pts')
       .notNullable();
     table.integer('lvl')

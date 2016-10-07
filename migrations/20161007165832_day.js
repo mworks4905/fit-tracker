@@ -1,6 +1,11 @@
 exports.up = function(knex) {
   return knex.schema.createTable('day', (table) => {
     table.increments();
+    table.integer('user_id')
+      .references('users.id')
+      .onDelete('CASCADE')
+      .notNullable()
+      .index();
     table.integer('tot_pts')
       .notNullable();
     table.boolean('m_health')
