@@ -6,7 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var levels = require('./routes/levels');
+var day = require('./routes/day');
+var activities = require('./routes/activities');
+var cheats = require('./routes/cheats');
 
 var app = express();
 
@@ -18,12 +21,17 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/levels', levels);
+app.use('/day', day);
+app.use('/activities', activities);
+app.use('/cheats', cheats);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
