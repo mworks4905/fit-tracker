@@ -1,0 +1,41 @@
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+  color: #666666;
+}
+
+body {
+  background-color: #000000;
+  background-size: cover;
+  background-image: url("../images/fitness.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#download-button {
+  background-color: #3b5998;
+}
+
+#logo {
+  color: #e65100;
+  font-family: Impact, Charcoal, sans-serif;
+  font-style: italic;
+}
+
+#motto {
+  color: #43AF11;
+  font-family: Papyrus, fantasy;
+  font-weight: bolder;
+}
