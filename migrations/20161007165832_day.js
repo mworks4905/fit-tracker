@@ -6,7 +6,7 @@ exports.up = function(knex) {
       .onDelete('CASCADE')
       .notNullable()
       .index();
-    table.integer('tot_pts')
+    table.integer('day_pts')
       .notNullable();
     table.boolean('m_health')
       .notNullable();
