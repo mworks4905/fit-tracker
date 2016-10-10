@@ -23,7 +23,8 @@ router.post('/', (req, res, next) => {
             console.log('you are logged in!');
             delete user[0].hash;
             req.session.userInfo = user[0];
-            res.render('index');
+            // console.log(req.session.userInfo);
+            res.render('levels', req.session.userInfo);
           }else{
             console.log('your password is wrong');
             res.render('index');
