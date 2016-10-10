@@ -3,7 +3,7 @@ exports.seed = function(knex) {
     .then(() => {
       return knex('day').insert([{
         user_id: 1,
-        tot_pts: 500,
+        day_pts: 500,
         m_health: true,
         m_water: false,
         a_health: false,
