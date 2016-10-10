@@ -1,5 +1,5 @@
-// var express = require('express');
-// var router = express.Router();
+var express = require('express');
+var router = express.Router();
 // const knex = require('../knex');
 //
 // /* GET users listing. */
@@ -23,7 +23,7 @@
 //
 // });
 //
-// module.exports = router;
+module.exports = router;
 
 
 // router.patch('/:id', (req, res, next) => {
