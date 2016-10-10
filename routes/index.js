@@ -43,10 +43,37 @@ router.post('/', (req, res, next) => {
       })
       .then((user) => {
         delete user[0].hash;
-        console.log(req.session);
-        console.log(user[0]);
         req.session.userInfo = user[0];
         res.render('index');
+      })
+  }else{
+    knex('users')
+      .where('accessToken', req.body.accessToken)
+      .then((user) => {
+        if(user.length === 0){
+          console.log('new fb user');
+          knex('users')
+            .returning('*')
+            .insert({
+              tot_pts: 0,
+              lvl: 0,
+              email: req.body.email,
+              hash: 'password',
+              accessToken: req.body.accessToken
+            })
+            .then((user) => {
+              delete user[0].hash;
+              delete user[0].accessToken;
+              req.session.userInfo = user[0];
+              res.render('index');
+            })
+        }else{
+          console.log('existing fb user');
+          delete user[0].hash;
+          delete user[0].accessToken;
+          req.session.userInfo = user[0];
+          res.render('index');
+        }
       })
   }
 })
