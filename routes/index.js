@@ -3,7 +3,7 @@ var router = express.Router();
 var cookieSession = require('cookie-session');
 
 router.get('/', (req, res, next) => {
-  res.redirect('index')
+  res.render('index')
 })
 
 module.exports = router;
