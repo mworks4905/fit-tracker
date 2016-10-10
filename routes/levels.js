@@ -9,19 +9,29 @@ router.get('/', (req, res, next) => {
 });
 
 router.put('/', (req, res, next) => {
-  console.log('doing the put!')
+  // console.log('doing the put!')
+  let level = req.body.level
+  let points = 0
+  console.log(req.body)
+  if(level === '1') {
+    points = 500
+  } else if (level === '2') {
+    points = 250
+  } else {
+    points = 0
+  }
   return knex('users')
     .where('users.id', req.session.userInfo.id)
     .update({
-      lvl: req.body.level
-      }, '*')
-  })
-  .then((updated) => {
-    res.send('you changed your level:', updated);
+      tot_pts: points,
+      lvl: level}, '*')
+
+  .then(() => {
+    res.render('day', req.session.userInfo);
    })
-  //   .catch((err) => {
-  //    next(err);
-  //  });
+    .catch((err) => {
+     next(err);
+   });
 });
 
 // updatePost(post){
