@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../knex');
 
+
+router.get('/', (req, res, next) => {
+  res.render('day')
+})
 // Total User points
 router.get('/', function(req, res, next) {
   knex('users')
