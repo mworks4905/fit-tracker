@@ -5,6 +5,7 @@ const router = express.Router();
 const knex = require('../knex');
 const bcrypt = require('bcrypt');
 const cookieSession = require('cookie-session');
+const boom = require('boom');
 
 router.get('/', (req, res, next) => {
   res.render('index')
@@ -16,22 +17,21 @@ router.post('/', (req, res, next) => {
       .where('email', req.body.email)
       .then((user) => {
         if(user.length === 0){
-          console.log('you are not a user in our database');
-          res.render('index');
+          res.render('index', {message: 'Wrong email or password.'});
         }else{
           if(bcrypt.compareSync(req.body.password, user[0].hash)){
-            console.log('you are logged in!');
             delete user[0].hash;
             req.session.userInfo = user[0];
-            res.render('index');
+            res.render('day');
           }else{
             console.log('your password is wrong');
-            res.render('index');
+            return next(boom.create(400, 'meow'));
+            // res.render('index');
           }
         }
       })
   }
-  if(req.body.signup === ''){
+  else if(req.body.signup === ''){
     knex('users')
       .returning('*')
       .insert({
@@ -43,14 +43,14 @@ router.post('/', (req, res, next) => {
       .then((user) => {
         delete user[0].hash;
         req.session.userInfo = user[0];
-        res.render('index');
+        res.render('levels');
       })
   }else{
+    console.log('NOOOOOOO');
     knex('users')
-      .where('accessToken', req.body.accessToken)
+      .where('email', req.body.email)
       .then((user) => {
         if(user.length === 0){
-          console.log('new fb user');
           knex('users')
             .returning('*')
             .insert({
@@ -64,14 +64,13 @@ router.post('/', (req, res, next) => {
               delete user[0].hash;
               delete user[0].accessToken;
               req.session.userInfo = user[0];
-              res.render('index');
+              res.render('levels');
             })
         }else{
-          console.log('existing fb user');
           delete user[0].hash;
           delete user[0].accessToken;
           req.session.userInfo = user[0];
-          res.render('index');
+          res.render('day');
         }
       })
   }
