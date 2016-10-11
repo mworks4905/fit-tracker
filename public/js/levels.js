@@ -22,3 +22,8 @@ function updateUserLevel(){
     })
   })
 }
+
+$('.redirect-button').click(function() {
+    window.location = '/day';
+    return false;
+});
