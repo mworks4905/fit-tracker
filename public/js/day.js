@@ -3,6 +3,7 @@ $(document).ready(function(){
     var value = $('.m_health').prop('checked');
     if(value){
       var m_health = true;
+      // ajaxCall();
       $.ajax({
         contentType: 'application/json',
         url: `/day`,
@@ -14,11 +15,22 @@ $(document).ready(function(){
       }).fail(err => {
         console.log(err)
       })
-  }else{
-
-  }
+    }
   })
 
+// function ajaxCall() {
+//   $.ajax({
+//     contentType: 'application/json',
+//     url: `/day`,
+//     method: 'PUT',
+//     dataType: 'json',
+//     data: JSON.stringify({value, m_health, m_water, a_health, a_water, n_health, n_water}),
+//   }).done(() => {
+//     window.location = '/day'
+//   }).fail(err => {
+//     console.log(err)
+//   })
+// }
 
 
 
