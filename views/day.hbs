@@ -1,3 +1,5 @@
+<script src="js/day.js"></script>
+
 <div class="row">
 
   <div id="" class="points">
@@ -11,34 +13,66 @@
     <h4>{{TOD}}This is the time of Day</h4>
   </div>
           <!--- Slider Buttons -->
-          <div class="morning">
+          <div id="morning">
+          <div >
           <div class="col s12 m12 l12 ">
             <h5>Did you eat healthy?</h5>
             <div class="switch">
                 <label>
                     No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                </label>
-            </div>
-          </div>
-
-          <div class="col s12 m12 l12">
-            <h5>Did you drink water?</h5>
-            <div class="switch">
-                <label>
-                    No
-                    <input type="checkbox">
+                    <input type="checkbox" class="m_health">
                     <span class="lever"></span>
                     Yes
                 </label>
             </div>
           </div>
         </div>
+        <div>
+          <div class="col s12 m12 l12">
+            <h5>Did you drink water?</h5>
+            <div class="switch">
+                <label>
+                    No
+                    <input type="checkbox" class="m_water">
+                    <span class="lever"></span>
+                    Yes
+                </label>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div id="afternoon">
+        <div class="a_health">
+        <div class="col s12 m12 l12 ">
+          <h5>Did you eat healthy?</h5>
+          <div class="switch">
+              <label>
+                  No
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  Yes
+              </label>
+          </div>
+        </div>
+      </div>
+      <div class="a_water">
+        <div class="col s12 m12 l12">
+          <h5>Did you drink water?</h5>
+          <div class="switch">
+              <label>
+                  No
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  Yes
+              </label>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <div class="afternoon">
+    <div id="evening">
+      <div class="n_health">
       <div class="col s12 m12 l12 ">
         <h5>Did you eat healthy?</h5>
         <div class="switch">
@@ -50,7 +84,8 @@
             </label>
         </div>
       </div>
-
+    </div>
+    <div class="n_water">
       <div class="col s12 m12 l12">
         <h5>Did you drink water?</h5>
         <div class="switch">
@@ -63,32 +98,9 @@
         </div>
       </div>
     </div>
-
-    <div class="evening">
-    <div class="col s12 m12 l12 ">
-      <h5>Did you eat healthy?</h5>
-      <div class="switch">
-          <label>
-              No
-              <input type="checkbox">
-              <span class="lever"></span>
-              Yes
-          </label>
-      </div>
-    </div>
-
-    <div class="col s12 m12 l12">
-      <h5>Did you drink water?</h5>
-      <div class="switch">
-          <label>
-              No
-              <input type="checkbox">
-              <span class="lever"></span>
-              Yes
-          </label>
-      </div>
-    </div>
   </div>
+
+
             <!--- Activities Button -->
           <div class="col s12 m12 l12">
             <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Activities</a>

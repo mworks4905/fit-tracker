@@ -2,39 +2,16 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../knex');
 var cookieSession = require('cookie-session');
-
-
-
-// router.get('/', (req, res, next) => {
-//   res.render('day', {
-//     points:
-//         knex('users')
-//         .where('tot_pts')
-//         .then((points) => {
-//           res.send(points);
-//         })
-//         .catch((err) => {
-//           next(err);
-//         });
-//       });,
-//     dailyPoints: '50',
-//   })
-// })
-// router.get('/', (req, res, next) => {
-//   knex('users')
-//   .where('id', req.session.userInfo.id)
-//   .then((user) => {
-//     res.render('day', {
-//       points: user[0].tot_pts,
-//     })
-//   })
-// })
+var total = 0;
+var day = 0;
 
 router.get('/', (req, res, next) => {
   knex('users')
   .innerJoin('day', 'users.id', 'day.user_id')
   .where('users.id', req.session.userInfo.id)
   .then((user) => {
+    total = user[0].tot_pts;
+    day = user[0].day_pts;
     res.render('day', {
       points: user[0].tot_pts,
       dailyPoints: user[0].day_pts
@@ -42,30 +19,77 @@ router.get('/', (req, res, next) => {
   })
 })
 
-// Total User points
-// router.get('/', function(req, res, next) {
-//   knex('users')
-//   .where('tot_pts')
-//   .then((points) => {
-//     res.send(points);
-//   })
-//   .catch((err) => {
-//     next(err);
-//   });
-// });
+router.put('/', (req, res, next) => {
+    if (req.body.m_health) {
+        if (req.body.value) {
+            knex('day')
+                .where('user_id', req.session.userInfo.id)
+                .orderBy('id', 'desc')
+                .limit(1)
+                .update({
+                    day_pts: day + 25
+                }, '*')
+                .then((user) => {
+                    day = user.day_pts;
+                    knex('users')
+                        .where('id', req.session.userInfo.id)
+                        .update({
+                            tot_pts: total + 25
+                        }, '*')
+                        .then((user1) => {
+                            total = user1[0].tot_pts;
+                            knex('users')
+                                .innerJoin('day', 'users.id', 'day.user_id')
+                                .where('users.id', req.session.userInfo.id)
+                                .then((user2) => {
+                                    res.render('day', {
+                                        points: user2[0].tot_pts,
+                                        dailyPoints: user2[0].day_pts
+                                    })
+                                })
+                        })
+                })
+        }
+    }
+})
+ 
+
+// router.put('/', (req, res, next) => {
+//     if(req.body.m_health){
+//       if(req.body.value === true){
+//         knex('users')
+//         .update({
+//           'tot_pts': total + 25,
+//         }, '*')
+//         .where('users.id', req.session.userInfo.id)
+//         .then((user) => {
+//           total = user[0].tot_pts;
+//           res.render('day', {
+//             points: user.tot_pts
+//           })
+//         })
 //
-// // Total daily points
-// router.get('/', (req, res, next) => {
-//   knex('day')
-//   .where('tot_pts')
-//   .then((dailyPoints) => {
-//     res.send(dailyPoints);
-//   })
-//   .catch((err) => {
-//     next(err);
-//   });
-// });
+//         knex('day')
+//         .update({
+//           'day_pts': day + 25,
+//         }, '*')
+//         .then((user) => {
+//           total = user[0].day_pts;
+//           res.render('day', {
+//             dailyPoints: day.day_pts
+//           })
+//         })
+//           // .then((user) => {
+//             // console.log(user[0].day_pts);
+//             // res.render('day', {
+//             //   points: user[0].tot_pts,
+//             //   dailyPoints: user[0].day_pts
+//         //     })
+//         // })
 //
+//      }
+//     }
+// })
 // router.get('/', (req, res, next) => {
 //   // check current time
 //   var localTime = () => {
@@ -74,11 +98,10 @@ router.get('/', (req, res, next) => {
 //     var hours = time.getHours();
 //     return hours;
 //   };
-//   console.log(localTime());
+//   //console.log(localTime());
 //
 //   if(hours >= 0 && hours < 11){
 //     //use handlebars to send the text for MORNING
-//
 //     res.send('morning')//replace with morning tab image
 //   };
 //   else if(hours >= 11 && hours < 14){
@@ -91,8 +114,8 @@ router.get('/', (req, res, next) => {
 //   };
 // });
 //
-router.post('/', (req, res, next) => {
-
-})
+// // router.post('/', (req, res, next) => {
+// //
+// // })
 
 module.exports = router;
