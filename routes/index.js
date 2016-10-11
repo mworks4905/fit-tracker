@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
           if(bcrypt.compareSync(req.body.password, user[0].hash)){
             delete user[0].hash;
             req.session.userInfo = user[0];
-            res.render('day');
+            res.redirect('day');
           }else{
             console.log('your password is wrong');
             return next(boom.create(400, 'meow'));
