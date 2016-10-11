@@ -22,9 +22,3 @@ function updateUserLevel(){
     })
   })
 }
-
-// $('.redirect-button').click(function() {
-//     // window.location = '/day'
-//     // return false;
-//     location.assign('http://locolhost:8000/day')
-// });
