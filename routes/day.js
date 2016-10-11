@@ -4,13 +4,14 @@ var knex = require('../knex');
 var cookieSession = require('cookie-session');
 var total = 0;
 var day = 0;
+var hours = 5;
 
 router.get('/', (req, res, next) => {
   knex('users')
   .innerJoin('day', 'users.id', 'day.user_id')
   .where('users.id', req.session.userInfo.id)
   .then((user) => {
-    console.log(user[0]);
+    //console.log(req.session.userInfo.id);
     total = user[0].tot_pts;
     day = user[0].day_pts;
     res.render('day', {
@@ -70,33 +71,35 @@ function giveUserPts(req, res, next){
     })
   })
 }
+// check current time
+var localTime = () => {
+  var timeInMs = Date.now();
+  var time = new Date(timeInMs);
+  var hours = time.getHours();
+  return hours;
+};
+//console.log(localTime());
 
-// router.get('/', (req, res, next) => {
-//   // check current time
-//   var localTime = () => {
-//     var timeInMs = Date.now();
-//     var time = new Date(timeInMs);
-//     var hours = time.getHours();
-//     return hours;
-//   };
-//   //console.log(localTime());
-//
-//   if(hours >= 0 && hours < 11){
-//     //use handlebars to send the text for MORNING
-//     res.send('morning')//replace with morning tab image
-//   };
-//   else if(hours >= 11 && hours < 14){
-//     //use handlebars to send the text for AFTERNOON
-//     res.send('afternoon')//replace with afternoon tab image
-//   };
-//   else{
-//     //use handlebars to send the text for EVENING
-//     res.send('evening')//replace with evening tab image
-//   };
-// });
-//
-// // router.post('/', (req, res, next) => {
-// //
-// // })
+router.get('/', (req, res, next) => {
+  //localTime();
+  if(hours >= 0 && hours < 11){
+    knex('day')
+    .where('user_id', req.session.userInfo.id)
+    .orderBy('id', 'desc')
+    .limit(1)
+    .then((data) => {
+      res.render('day', {TOD:'Morning'})//replace with morning tab image
+    })
+  };
+  // else if(hours >= 11 && hours < 14){
+  //
+  //   res.render('day', {TOD:'Afternoon'})//replace with afternoon tab image
+  // };
+  // else{
+  //
+  //   res.render('day', {TOD:'Evening'})//replace with evening tab image
+  // };
+});
+
 
 module.exports = router;
