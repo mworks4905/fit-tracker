@@ -81,7 +81,7 @@ router.post('/', (req, res) => {
          .then((user2) => {
            delete user1[0].hash;
            req.session.userInfo = user1[0];
-           res.redirect('levels');
+           res.redirect('/levels');
          })
        })
      } else {
@@ -93,7 +93,7 @@ router.post('/', (req, res) => {
   }
 
  } else {
-  knex('users')
+  return knex('users')
    .where('email', req.body.email)
    .then((user) => {
     if (user.length === 0) {
@@ -123,14 +123,15 @@ router.post('/', (req, res) => {
           delete user1[0].hash;
           delete user1[0].accessToken;
           req.session.userInfo = user1[0];
-          res.redirect('levels');
+          res.send('/levels');
         })
       })
     } else {
      delete user[0].hash;
      delete user[0].accessToken;
      req.session.userInfo = user[0];
-     res.redirect('day');
+     console.log(user[0]);
+     res.send('/day');
     }
    })
  }

@@ -10,7 +10,6 @@ router.get('/', (req, res, next) => {
   .innerJoin('day', 'users.id', 'day.user_id')
   .where('users.id', req.session.userInfo.id)
   .then((user) => {
-    console.log(user[0]);
     total = user[0].tot_pts;
     day = user[0].day_pts;
     res.render('day', {
