@@ -2,11 +2,23 @@
 <script src = "js/index.js"></script>
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
+      {{#if error}}
+        <script>Materialize.toast('Bad email or password', 3000)</script>
+      {{/if}}
+      {{#if email}}
+        <script>Materialize.toast('Email field is blank', 3000)</script>
+      {{/if}}
+      {{#if pswd}}
+        <script>Materialize.toast('Password field is blank', 3000)</script>
+      {{/if}}
+      {{#if logged}}
+        <script>Materialize.toast("You're already a user. Please log in!", 3000)</script>
+      {{/if}}
         <div class="row center" id="logo">
             <h1>EARN YOUR CHEAT</h1>
         </div>
         <div class="row">
-            <form method="POST" class="col s12">
+            <form method="POST" id="loginForm" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="email" type="email" name="email" class="validate white-text">

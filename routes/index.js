@@ -11,42 +11,61 @@ router.get('/', (req, res, next) => {
   res.render('index')
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   if(req.body.login === ''){
+    if(req.body.email === ''){
+      res.render('index', {email:'email'})
+    }
+    else if(req.body.password === ''){
+      res.render('index', {pswd:'pswd'})
+    }else{
     knex('users')
       .where('email', req.body.email)
       .then((user) => {
         if(user.length === 0){
-          res.render('index', {message: 'Wrong email or password.'});
+          res.render('index', {error: 'blahblah'})
         }else{
           if(bcrypt.compareSync(req.body.password, user[0].hash)){
             delete user[0].hash;
             req.session.userInfo = user[0];
             res.redirect('day');
           }else{
-            console.log('your password is wrong');
-            return next(boom.create(400, 'meow'));
-            // res.render('index');
+            res.render('index', {error: 'blahblah'});
           }
         }
       })
+    }
   }
   else if(req.body.signup === ''){
+    if(req.body.email === ''){
+      res.render('index', {email:'email'})
+    }
+    else if(req.body.password === ''){
+      res.render('index', {pswd:'pswd'})
+    }else{
     knex('users')
-      .returning('*')
-      .insert({
-        tot_pts: 0,
-        lvl: 0,
-        email: req.body.email,
-        hash: bcrypt.hashSync(req.body.password, 12)
-      })
+      .where('email', req.body.email)
       .then((user) => {
-        delete user[0].hash;
-        req.session.userInfo = user[0];
-        res.render('levels');
-      })
+        if(user.length === 0){
+          knex('users')
+            .returning('*')
+            .insert({
+              tot_pts: 0,
+              lvl: 0,
+              email: req.body.email,
+              hash: bcrypt.hashSync(req.body.password, 12)
+            })
+            .then((user) => {
+              delete user[0].hash;
+              req.session.userInfo = user[0];
+              res.redirect('levels');
+            })
+        }else{
+          res.render('index', {logged: 'blahblah'});
+        }
+      })}
+
   }else{
-    console.log('NOOOOOOO');
     knex('users')
       .where('email', req.body.email)
       .then((user) => {
@@ -64,13 +83,13 @@ router.post('/', (req, res, next) => {
               delete user[0].hash;
               delete user[0].accessToken;
               req.session.userInfo = user[0];
-              res.render('levels');
+              res.redirect('levels');
             })
         }else{
           delete user[0].hash;
           delete user[0].accessToken;
           req.session.userInfo = user[0];
-          res.render('day');
+          res.redirect('day');
         }
       })
   }
