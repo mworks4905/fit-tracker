@@ -8,6 +8,7 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "~1.15.1",
+    "boom": "^4.1.0",
     "cookie-parser": "~1.4.3",
     "cookie-session": "^2.0.0-alpha.1",
     "debug": "~2.2.0",
@@ -17,6 +18,8 @@
     "jade": "~1.11.0",
     "knex": "^0.12.2",
     "morgan": "~1.7.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "serve-favicon": "~2.3.0"
   }
 }
