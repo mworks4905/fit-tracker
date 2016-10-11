@@ -52,7 +52,18 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
+app.use((err, _req, res, _next) => {
+  if (err.output && err.output.statusCode) {
+    return res
+      .status(err.output.statusCode)
+      .set('Content-Type', 'text/plain')
+      .send(err.message);
+  }
 
+  // eslint-disable-next-line no-console
+  console.error(err.stack);
+  res.sendStatus(500);
+});
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -75,12 +86,11 @@ app.use(function(err, req, res, next) {
   });
 });
 
-const port = process.env.PORT || 8000;
-app.listen(port, () => {
-  if (app.get('env') !== 'test') {
-    // eslint-disable-next-line no-console
-    console.log('Listening on port', port);
-  }
-});
+// const port = process.env.PORT || 8000;
+// app.listen(port, () => {
+//
+//     console.log('Listening on port', port);
+//
+// });
 
 module.exports = app;
