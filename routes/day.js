@@ -21,6 +21,28 @@ router.get('/', (req, res, next) => {
   })
 })
 
+
+router.get('/', (req, res, next) => {
+  console.log(hours);
+  if(hours >= 0 && hours < 11){
+    // knex('day')
+    // .where('user_id', req.session.userInfo.id)
+    // .orderBy('id', 'desc')
+    // .limit(1)
+    // .then((data) => {
+      res.render('day', {TOD:'Morning'})//replace with morning tab image
+    // })
+  };
+  // else if(hours >= 11 && hours < 14){
+  //
+  //   res.render('day', {TOD:'Afternoon'})//replace with afternoon tab image
+  // };
+  // else{
+  //
+  //   res.render('day', {TOD:'Evening'})//replace with evening tab image
+  // };
+});
+
 router.put('/', (req, res, next) => {
     if (req.body.m_health && req.body.value) {
          giveUserPts(req, res, next);
@@ -80,26 +102,7 @@ var localTime = () => {
 };
 //console.log(localTime());
 
-router.get('/', (req, res, next) => {
-  //localTime();
-  if(hours >= 0 && hours < 11){
-    knex('day')
-    .where('user_id', req.session.userInfo.id)
-    .orderBy('id', 'desc')
-    .limit(1)
-    .then((data) => {
-      res.render('day', {TOD:'Morning'})//replace with morning tab image
-    })
-  };
-  // else if(hours >= 11 && hours < 14){
-  //
-  //   res.render('day', {TOD:'Afternoon'})//replace with afternoon tab image
-  // };
-  // else{
-  //
-  //   res.render('day', {TOD:'Evening'})//replace with evening tab image
-  // };
-});
+
 
 
 module.exports = router;
