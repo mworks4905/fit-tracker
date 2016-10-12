@@ -165,7 +165,10 @@ router.post('/', (req, res) => {
           a_health: false,
           a_water: false,
           n_health: false,
-          n_water: false
+          n_water: false,
+          choice: false,
+          tod: 'Morning',
+          given_bonus_pts: false
          })
          .then((user2) => {
           delete user1[0].hash;
@@ -218,7 +221,10 @@ router.post('/', (req, res) => {
          a_health: false,
          a_water: false,
          n_health: false,
-         n_water: false
+         n_water: false,
+         tod: 'Morning',
+         choice: false,
+         given_bonus_pts:false
         })
         .then((user2) => {
          delete user1[0].hash;
