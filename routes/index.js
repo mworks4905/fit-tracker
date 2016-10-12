@@ -8,15 +8,10 @@ const cookieSession = require('cookie-session');
 const boom = require('boom');
 
 router.get('/', (req, res, next) => {
-  console.log(req.sesh);
-  if(req.sesh){
-    console.log(req.sesh);
-    req.session = null;
-  }
  if (req.session.userInfo !== undefined) {
   res.render('index', {
    stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a href="/">Log Out</a></li>
+      <li class="logout"><a class="logout">Log Out</a></li>
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="day">Day</a></li>
@@ -39,7 +34,7 @@ router.post('/', (req, res) => {
    res.render('index', {
     email: 'email',
     stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a href="/">Log Out</a></li>
+      <li><a class="logout" href="/">Log Out</a></li>
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="day">Day</a></li>
@@ -54,7 +49,7 @@ router.post('/', (req, res) => {
   } else if (req.body.password === '') {
    res.render('index', {
     stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a class="logout" href="/">Log Out</a></li>
+      <li><a class="logout" >Log Out</a></li>
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="day">Day</a></li>
@@ -75,7 +70,7 @@ router.post('/', (req, res) => {
       res.render('index', {
        error: 'blahblah',
        stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-         <li><a href="/">Log Out</a></li>
+         <li><a class="logout" href="#">Log Out</a></li>
        </ul>
        <ul id="nav-mobile" class="right hide-on-med-and-down">
          <li><a href="day">Day</a></li>
@@ -96,7 +91,7 @@ router.post('/', (req, res) => {
        res.render('index', {
         error: 'blahblah',
         stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-          <li><a href="/">Log Out</a></li>
+          <li><a class="logout" href="/">Log Out</a></li>
         </ul>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="day">Day</a></li>
@@ -117,7 +112,7 @@ router.post('/', (req, res) => {
    res.render('index', {
     email: 'email',
     stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a href="/">Log Out</a></li>
+      <li><a class="logout" href="/">Log Out</a></li>
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="day">Day</a></li>
@@ -133,7 +128,7 @@ router.post('/', (req, res) => {
    res.render('index', {
     pswd: 'pswd',
     body: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a href="/">Log Out</a></li>
+      <li><a class="logout" href="/">Log Out</a></li>
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="day">Day</a></li>
@@ -181,7 +176,7 @@ router.post('/', (req, res) => {
      } else {
       res.render('index', {
        stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-          <li><a href="/">Log Out</a></li>
+          <li><a class="logout" href="/">Log Out</a></li>
         </ul>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="day">Day</a></li>
@@ -242,4 +237,9 @@ router.post('/', (req, res) => {
    })
  }
 })
+
+router.delete('/', (req, res, next) => {
+  req.session = null;
+  res.send('nulled')
+});
 module.exports = router;
