@@ -2,9 +2,19 @@
 <script src = "js/nav.js"></script>
 <div class="row">
 
+<!--- Points button that leads to cheats page -->
+<a class="waves-effect waves-light btn" href="/cheats">
   <div class="points">
-    <h2>Your total points are {{points}}!</h2>
+    <h2>
+      {{points}}
+    </h2>
+      <br>
+      <p>
+        <h4>Click to spend your points!</h4>
+      </p>
   </div>
+</a>
+
   <div class="dailyPoints">
     <h3>{{dailyPoints}}/400</h3>
   </div>
@@ -18,9 +28,13 @@
   </div>
 <!--- Slider Buttons -->
     {{{switches}}}
+<!--- Submit button -->
+<div class="col s12 m12 l12">
+  <a class="waves-effect waves-light btn" href="/day"><i class="material-icons left">cloud</i>Submit</a>
+</div>
 <!--- Activities Button -->
 <div class="col s12 m12 l12">
-  <a class="waves-effect waves-light btn" href="/activites.hbs"><i class="material-icons left">cloud</i>Activities</a>
+  <a class="waves-effect waves-light btn" href="/activities"><i class="material-icons left">cloud</i>Activities</a>
 </div>
 
 
