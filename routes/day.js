@@ -8,22 +8,38 @@ var bonusPts = false;
 var timeOfDay = ['Morning', 'Afternoon', 'Evening'];
 
 router.get('/', (req, res, next) => {
-  knex('users')
-  .innerJoin('day', 'users.id', 'day.user_id')
-  .where('users.id', req.session.userInfo.id)
-  .then((user) => {
-    total = user[0].tot_pts;
-    day = user[0].day_pts;
-    if(day >= 10000){
-      bonusPts = true;
-      console.log(bonusPts);
-    }
-    res.render('day', {
-      points: user[0].tot_pts,
-      dailyPoints: user[0].day_pts,
-      TOD: localTime()
+  if(req.session.userInfo === undefined){
+    res.redirect('index');
+  }else{
+    knex('users')
+    .innerJoin('day', 'users.id', 'day.user_id')
+    .where('users.id', req.session.userInfo.id)
+    .then((user) => {
+      total = user[0].tot_pts;
+      day = user[0].day_pts;
+      if(day >= 10000){
+        bonusPts = true;
+        console.log(bonusPts);
+      }
+      res.render('day', {
+        points: user[0].tot_pts,
+        dailyPoints: user[0].day_pts,
+        TOD: localTime(),
+        stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
+          <li><a class="logout" href="/">Log Out</a></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="day">Day</a></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="activities">Activities</a></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="cheats">Cheats</a></li>
+        </ul>`
+      })
     })
-  })
+  }
 })
 
 
