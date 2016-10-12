@@ -6,6 +6,8 @@ exports.up = function(knex) {
       .onDelete('CASCADE')
       .notNullable()
       .index();
+    table.string('tod')
+      .notNullable();
     table.integer('day_pts')
       .notNullable();
     table.boolean('m_health')
@@ -19,6 +21,8 @@ exports.up = function(knex) {
     table.boolean('n_health')
       .notNullable();
     table.boolean('n_water')
+      .notNullable();
+    table.boolean('choice')
       .notNullable();
     table.timestamps(true, true);
   });

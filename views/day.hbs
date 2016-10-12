@@ -8,98 +8,16 @@
   <div class="dailyPoints">
     <h3>{{dailyPoints}}/400</h3>
   </div>
-
+  <div class="row">
+    <a class="waves-effect waves-light btn m-btn">Morning</a>
+    <a class="waves-effect waves-light btn a-btn">Afternoon</a>
+    <a class="waves-effect waves-light btn e-btn">Evening</a>
+  </div>
   <div class="TOD">
     <h4>{{TOD}}</h4>
   </div>
 <!--- Slider Buttons -->
-          <div id="morning">
-          <div >
-          <div class="col s12 m12 l12 ">
-            <h5>Did you eat healthy?</h5>
-            <div class="switch">
-                <label>
-                    No
-                    <input type="checkbox" class="m_health">
-                    <span class="lever"></span>
-                    Yes
-                </label>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="col s12 m12 l12">
-            <h5>Did you drink water?</h5>
-            <div class="switch">
-                <label>
-                    No
-                    <input type="checkbox" class="m_water">
-                    <span class="lever"></span>
-                    Yes
-                </label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="afternoon">
-        <div>
-        <div class="col s12 m12 l12 ">
-          <h5>Did you eat healthy?</h5>
-          <div class="switch">
-              <label>
-                  No
-                  <input type="checkbox" class="a_health">
-                  <span class="lever"></span>
-                  Yes
-              </label>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="col s12 m12 l12">
-          <h5>Did you drink water?</h5>
-          <div class="switch">
-              <label>
-                  No
-                  <input type="checkbox" class="a_water">
-                  <span class="lever"></span>
-                  Yes
-              </label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="evening">
-      <div>
-      <div class="col s12 m12 l12 ">
-        <h5>Did you eat healthy?</h5>
-        <div class="switch">
-            <label>
-                No
-                <input type="checkbox" class="n_health">
-                <span class="lever"></span>
-                Yes
-            </label>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="col s12 m12 l12">
-        <h5>Did you drink water?</h5>
-        <div class="switch">
-            <label>
-                No
-                <input type="checkbox" class="n_water">
-                <span class="lever"></span>
-                Yes
-            </label>
-        </div>
-      </div>
-    </div>
-  </div>
-
+    {{{switches}}}
 <!--- Activities Button -->
 <div class="col s12 m12 l12">
   <a class="waves-effect waves-light btn" href="/activites.hbs"><i class="material-icons left">cloud</i>Activities</a>
