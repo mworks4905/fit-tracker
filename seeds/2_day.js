@@ -11,7 +11,8 @@ exports.seed = function(knex) {
         n_health: true,
         n_water: true,
         choice: false,
-        tod: 'Morning'
+        tod: 'Morning',
+        given_bonus_pts: false
       }]);
     });
 };

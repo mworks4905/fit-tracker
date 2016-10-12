@@ -4,25 +4,22 @@ var knex = require('../knex');
 var cookieSession = require('cookie-session');
 var total = 0;
 var day = 0;
-// var mhealth = false;
-// var ahealth = false;
-// var nhealth = false;
-// var mwater = false;
-// var awater = false;
-// var nwater = false;
 var timeOfDay = ['Morning', 'Afternoon', 'Evening'];
+var bonusPts = false;
 var stuffs = `<ul id='nav-mobile' class="right hide-on-med-and-down">
-          <li><a class="logout" href="/">Log Out</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="day">Day</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="activities">Activities</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="cheats">Cheats</a></li>
-        </ul>`;
+  <li><a class="logout" href="/">Log Out</a></li>
+</ul>
+<ul id="nav-mobile" class="right hide-on-med-and-down">
+  <li><a href="day">Day</a></li>
+</ul>
+<ul id="nav-mobile" class="right hide-on-med-and-down">
+  <li><a href="activities">Activities</a></li>
+</ul>
+<ul id="nav-mobile" class="right hide-on-med-and-down">
+  <li><a href="cheats">Cheats</a></li>
+</ul>`;
+
+
 router.get('/', (req, res, next) => {
  if (req.session.userInfo === undefined) {
   res.redirect('index');
@@ -33,6 +30,9 @@ router.get('/', (req, res, next) => {
    .then((user) => {
     total = user[0].tot_pts;
     day = user[0].day_pts;
+    if(day >= 400){
+      bonusPts = true;
+    }
     if (user[0].choice) {
      knex('day')
       .where('user_id', req.session.userInfo.id)
@@ -978,12 +978,12 @@ router.put('/', (req, res, next) => {
     })
   }
  }
+
+
  if (req.body.m_health && req.body.value) {
-   console.log('hey');
   giveUserPts(req, res, next, true, 'm_health');
  }
  if (req.body.m_health && !req.body.value) {
-   console.log('heyhey');
   giveUserPts(req, res, next, false, 'm_health')
  }
  if (req.body.m_water && req.body.value) {
@@ -1014,7 +1014,6 @@ router.put('/', (req, res, next) => {
   giveUserPts(req, res, next, true, 'n_water');
  }
  if (req.body.n_water && !req.body.value) {
-   console.log('hey');
   giveUserPts(req, res, next, false, 'n_water');
  }
 })
@@ -1032,22 +1031,54 @@ function giveUserPts(req, res, next, value, type) {
        }, '*')
        .then((user) => {
         day = user[0].day_pts;
+        if(bonusPts && !user[0].given_bonus_pts){
+          knex('day')
+          .where('user_id', req.session.userInfo.id)
+          .orderBy('id', 'desc')
+          .limit(1)
+          .update({
+            day_pts: day + 100
+          }, '*')
+          .then((user1) => {
+            day = user1[0].day_pts;
+          })
+        }
         knex('users')
          .where('id', req.session.userInfo.id)
          .update({
           tot_pts: total + 25
          }, '*')
-         .then((user1) => {
-          total = user1[0].tot_pts;
-          knex('users')
-           .innerJoin('day', 'users.id', 'day.user_id')
-           .where('users.id', req.session.userInfo.id)
-           .then((user2) => {
-            res.render('day', {
-             points: user2[0].tot_pts,
-             dailyPoints: user2[0].day_pts
+         .then((user2) => {
+          total = user2[0].tot_pts;
+          if(bonusPts && !user[0].given_bonus_pts){
+            knex('day')
+            .where('user_id', req.session.userInfo.id)
+            .orderBy('id', 'desc')
+            .limit(1)
+            .update({
+              given_bonus_pts: true
+            }, '*')
+            // Update total points with bonus points
+            .then((user3) => {
+              knex('users')
+              .where('id', req.session.userInfo.id)
+              .update({
+                tot_pts: total + 100
+              }, '*')
+              .then((user4) => {
+                total = user4[0].day_pts;
+              })
             })
-           })
+          }
+          knex('users')
+          .innerJoin('day', 'users.id', 'day.user_id')
+          .where('users.id', req.session.userInfo.id)
+          .then((user5) => {
+            res.render('day', {
+              points: user5[0].tot_pts,
+              dailyPoints: user5[0].day_pts
+            })
+          })
          })
        })
     }else if(type === 'm_water'){
@@ -1061,22 +1092,54 @@ function giveUserPts(req, res, next, value, type) {
        }, '*')
        .then((user) => {
         day = user[0].day_pts;
+        if(bonusPts && !user[0].given_bonus_pts){
+          knex('day')
+          .where('user_id', req.session.userInfo.id)
+          .orderBy('id', 'desc')
+          .limit(1)
+          .update({
+            day_pts: day + 100
+          }, '*')
+          .then((user1) => {
+            day = user1[0].day_pts;
+          })
+        }
         knex('users')
          .where('id', req.session.userInfo.id)
          .update({
           tot_pts: total + 25
          }, '*')
-         .then((user1) => {
-          total = user1[0].tot_pts;
-          knex('users')
-           .innerJoin('day', 'users.id', 'day.user_id')
-           .where('users.id', req.session.userInfo.id)
-           .then((user2) => {
-            res.render('day', {
-             points: user2[0].tot_pts,
-             dailyPoints: user2[0].day_pts
+         .then((user2) => {
+          total = user2[0].tot_pts;
+          if(bonusPts && !user[0].given_bonus_pts){
+            knex('day')
+            .where('user_id', req.session.userInfo.id)
+            .orderBy('id', 'desc')
+            .limit(1)
+            .update({
+              given_bonus_pts: true
+            }, '*')
+            // Update total points with bonus points
+            .then((user3) => {
+              knex('users')
+              .where('id', req.session.userInfo.id)
+              .update({
+                tot_pts: total + 100
+              }, '*')
+              .then((user4) => {
+                total = user4[0].day_pts;
+              })
             })
-           })
+          }
+          knex('users')
+          .innerJoin('day', 'users.id', 'day.user_id')
+          .where('users.id', req.session.userInfo.id)
+          .then((user5) => {
+            res.render('day', {
+              points: user5[0].tot_pts,
+              dailyPoints: user5[0].day_pts
+            })
+          })
          })
        })
     }else if(type === 'a_health'){
@@ -1090,22 +1153,54 @@ function giveUserPts(req, res, next, value, type) {
        }, '*')
        .then((user) => {
         day = user[0].day_pts;
+        if(bonusPts && !user[0].given_bonus_pts){
+          knex('day')
+          .where('user_id', req.session.userInfo.id)
+          .orderBy('id', 'desc')
+          .limit(1)
+          .update({
+            day_pts: day + 100
+          }, '*')
+          .then((user1) => {
+            day = user1[0].day_pts;
+          })
+        }
         knex('users')
          .where('id', req.session.userInfo.id)
          .update({
           tot_pts: total + 25
          }, '*')
-         .then((user1) => {
-          total = user1[0].tot_pts;
-          knex('users')
-           .innerJoin('day', 'users.id', 'day.user_id')
-           .where('users.id', req.session.userInfo.id)
-           .then((user2) => {
-            res.render('day', {
-             points: user2[0].tot_pts,
-             dailyPoints: user2[0].day_pts
+         .then((user2) => {
+          total = user2[0].tot_pts;
+          if(bonusPts && !user[0].given_bonus_pts){
+            knex('day')
+            .where('user_id', req.session.userInfo.id)
+            .orderBy('id', 'desc')
+            .limit(1)
+            .update({
+              given_bonus_pts: true
+            }, '*')
+            // Update total points with bonus points
+            .then((user3) => {
+              knex('users')
+              .where('id', req.session.userInfo.id)
+              .update({
+                tot_pts: total + 100
+              }, '*')
+              .then((user4) => {
+                total = user4[0].day_pts;
+              })
             })
-           })
+          }
+          knex('users')
+          .innerJoin('day', 'users.id', 'day.user_id')
+          .where('users.id', req.session.userInfo.id)
+          .then((user5) => {
+            res.render('day', {
+              points: user5[0].tot_pts,
+              dailyPoints: user5[0].day_pts
+            })
+          })
          })
        })
     }else if(type === 'a_water'){
@@ -1119,22 +1214,54 @@ function giveUserPts(req, res, next, value, type) {
        }, '*')
        .then((user) => {
         day = user[0].day_pts;
+        if(bonusPts && !user[0].given_bonus_pts){
+          knex('day')
+          .where('user_id', req.session.userInfo.id)
+          .orderBy('id', 'desc')
+          .limit(1)
+          .update({
+            day_pts: day + 100
+          }, '*')
+          .then((user1) => {
+            day = user1[0].day_pts;
+          })
+        }
         knex('users')
          .where('id', req.session.userInfo.id)
          .update({
           tot_pts: total + 25
          }, '*')
-         .then((user1) => {
-          total = user1[0].tot_pts;
-          knex('users')
-           .innerJoin('day', 'users.id', 'day.user_id')
-           .where('users.id', req.session.userInfo.id)
-           .then((user2) => {
-            res.render('day', {
-             points: user2[0].tot_pts,
-             dailyPoints: user2[0].day_pts
+         .then((user2) => {
+          total = user2[0].tot_pts;
+          if(bonusPts && !user[0].given_bonus_pts){
+            knex('day')
+            .where('user_id', req.session.userInfo.id)
+            .orderBy('id', 'desc')
+            .limit(1)
+            .update({
+              given_bonus_pts: true
+            }, '*')
+            // Update total points with bonus points
+            .then((user3) => {
+              knex('users')
+              .where('id', req.session.userInfo.id)
+              .update({
+                tot_pts: total + 100
+              }, '*')
+              .then((user4) => {
+                total = user4[0].day_pts;
+              })
             })
-           })
+          }
+          knex('users')
+          .innerJoin('day', 'users.id', 'day.user_id')
+          .where('users.id', req.session.userInfo.id)
+          .then((user5) => {
+            res.render('day', {
+              points: user5[0].tot_pts,
+              dailyPoints: user5[0].day_pts
+            })
+          })
          })
        })
     }else if(type === 'n_health'){
@@ -1148,22 +1275,54 @@ function giveUserPts(req, res, next, value, type) {
        }, '*')
        .then((user) => {
         day = user[0].day_pts;
+        if(bonusPts && !user[0].given_bonus_pts){
+          knex('day')
+          .where('user_id', req.session.userInfo.id)
+          .orderBy('id', 'desc')
+          .limit(1)
+          .update({
+            day_pts: day + 100
+          }, '*')
+          .then((user1) => {
+            day = user1[0].day_pts;
+          })
+        }
         knex('users')
          .where('id', req.session.userInfo.id)
          .update({
           tot_pts: total + 25
          }, '*')
-         .then((user1) => {
-          total = user1[0].tot_pts;
-          knex('users')
-           .innerJoin('day', 'users.id', 'day.user_id')
-           .where('users.id', req.session.userInfo.id)
-           .then((user2) => {
-            res.render('day', {
-             points: user2[0].tot_pts,
-             dailyPoints: user2[0].day_pts
+         .then((user2) => {
+          total = user2[0].tot_pts;
+          if(bonusPts && !user[0].given_bonus_pts){
+            knex('day')
+            .where('user_id', req.session.userInfo.id)
+            .orderBy('id', 'desc')
+            .limit(1)
+            .update({
+              given_bonus_pts: true
+            }, '*')
+            // Update total points with bonus points
+            .then((user3) => {
+              knex('users')
+              .where('id', req.session.userInfo.id)
+              .update({
+                tot_pts: total + 100
+              }, '*')
+              .then((user4) => {
+                total = user4[0].day_pts;
+              })
             })
-           })
+          }
+          knex('users')
+          .innerJoin('day', 'users.id', 'day.user_id')
+          .where('users.id', req.session.userInfo.id)
+          .then((user5) => {
+            res.render('day', {
+              points: user5[0].tot_pts,
+              dailyPoints: user5[0].day_pts
+            })
+          })
          })
        })
     }else{
@@ -1177,22 +1336,54 @@ function giveUserPts(req, res, next, value, type) {
        }, '*')
        .then((user) => {
         day = user[0].day_pts;
+        if(bonusPts && !user[0].given_bonus_pts){
+          knex('day')
+          .where('user_id', req.session.userInfo.id)
+          .orderBy('id', 'desc')
+          .limit(1)
+          .update({
+            day_pts: day + 100
+          }, '*')
+          .then((user1) => {
+            day = user1[0].day_pts;
+          })
+        }
         knex('users')
          .where('id', req.session.userInfo.id)
          .update({
           tot_pts: total + 25
          }, '*')
-         .then((user1) => {
-          total = user1[0].tot_pts;
-          knex('users')
-           .innerJoin('day', 'users.id', 'day.user_id')
-           .where('users.id', req.session.userInfo.id)
-           .then((user2) => {
-            res.render('day', {
-             points: user2[0].tot_pts,
-             dailyPoints: user2[0].day_pts
+         .then((user2) => {
+          total = user2[0].tot_pts;
+          if(bonusPts && !user[0].given_bonus_pts){
+            knex('day')
+            .where('user_id', req.session.userInfo.id)
+            .orderBy('id', 'desc')
+            .limit(1)
+            .update({
+              given_bonus_pts: true
+            }, '*')
+            // Update total points with bonus points
+            .then((user3) => {
+              knex('users')
+              .where('id', req.session.userInfo.id)
+              .update({
+                tot_pts: total + 100
+              }, '*')
+              .then((user4) => {
+                total = user4[0].day_pts;
+              })
             })
-           })
+          }
+          knex('users')
+          .innerJoin('day', 'users.id', 'day.user_id')
+          .where('users.id', req.session.userInfo.id)
+          .then((user5) => {
+            res.render('day', {
+              points: user5[0].tot_pts,
+              dailyPoints: user5[0].day_pts
+            })
+          })
          })
        })
     }
@@ -1383,65 +1574,5 @@ function localTime() {
   return timeOfDay[2]
  }
 };
-
-function update_mHealth(req, res, next) {
- knex('day')
-  .where('user_id', req.session.userInfo.id)
-  .orderBy('id', 'desc')
-  .limit(1)
-  .update({
-   m_health: req.body.m_health
-  })
-}
-
-function update_mWater(req, res, next) {
- knex('day')
-  .where('user_id', req.session.userInfo.id)
-  .orderBy('id', 'desc')
-  .limit(1)
-  .update({
-   m_water: req.body.m_water
-  })
-}
-
-function update_aHealth(req, res, next) {
- knex('day')
-  .where('user_id', req.session.userInfo.id)
-  .orderBy('id', 'desc')
-  .limit(1)
-  .update({
-   a_health: req.body.a_health
-  })
-}
-
-function update_aWater(req, res, next) {
- knex('day')
-  .where('user_id', req.session.userInfo.id)
-  .orderBy('id', 'desc')
-  .limit(1)
-  .update({
-   a_water: req.body.a_water
-  })
-}
-
-function update_nHealth(req, res, next) {
- knex('day')
-  .where('user_id', req.session.userInfo.id)
-  .orderBy('id', 'desc')
-  .limit(1)
-  .update({
-   n_health: req.body.n_health
-  })
-}
-
-function update_nWater(req, res, next) {
- knex('day')
-  .where('user_id', req.session.userInfo.id)
-  .orderBy('id', 'desc')
-  .limit(1)
-  .update({
-   n_water: req.body.n_water
-  })
-}
 
 module.exports = router;

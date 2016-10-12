@@ -24,6 +24,8 @@ exports.up = function(knex) {
       .notNullable();
     table.boolean('choice')
       .notNullable();
+    table.boolean('given_bonus_pts')
+      .notNullable();
     table.timestamps(true, true);
   });
 };
