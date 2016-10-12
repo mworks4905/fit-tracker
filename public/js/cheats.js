@@ -2,9 +2,48 @@ $(document).ready(function() {
 
 var foods = [];
 
-$(".large").click(function(event) {
+let renderFoods = function(level) {
+  $('#food-cards-' + level).empty();
+
+  // console.log(level);
+  // console.log(foods);
+
+  for (let i = 0; i < 2; i++) {
+      let randomVariable = foods[Math.floor(Math.random() * foods.length)];
+      // console.log(randomVariable);
+      let $col = $('<div class="col s12 m4 l4">');
+      let $card = $('<div class="card grey lighten-4">');
+      let $content = $('<div class="card-content black-text">');
+      let $title = $('<h3 class="card-title">');
+      let $establishment = $('<p class="card-establishment">');
+      let $action = $('<div class="card-action waves-effect">');
+
+      $title.text(randomVariable.name);
+      $establishment.text(randomVariable.establishment);
+      // console.log(randomFood.name);
+      // console.log(randomFood.establishment);
+      $action.text('Click to Cheat');
+
+      $content.append($title, $establishment);
+      $card.append($content, $action)
+
+      $col.append($card);
+      console.log("card:", $card);
+
+      $('#food-cards-' + level).append($col);
+      // console.log($('food-cards-' + level));
+
+    } //for loop end
+}; //renderFoods function end
+
+
+
+$(".large").click(function() {
 
   event.preventDefault();
+
+  let level = $(this).data("level")
+  // console.log(level);
 
   $.ajax({
       method: 'GET',
@@ -21,14 +60,10 @@ $(".large").click(function(event) {
             name: oneFood.fields.item_name,
             establishment: oneFood.fields.brand_name
           };
-          if (food.establishment !== 'Optimum Nutrition' || food.establishment !== 'USDA') {
-            foods.push(food);
-            console.log("food:", food);
-          }
+          foods.push(food)
+          // console.log("food", food);
         } //  for loop
-        // else {
-        //   renderFoods();
-        // }
+        renderFoods(level);
       },
       error: function(err) {
         console.log('Your search was not found', err);
@@ -38,3 +73,10 @@ $(".large").click(function(event) {
   }); //event listener bracket
 
 }); //documentready end-brackets
+
+
+
+// if (food.establishment !== 'Optimum Nutrition' || food.establishment !== 'USDA') {
+//   foods.push(food);
+//   console.log("food:", food);
+// }
