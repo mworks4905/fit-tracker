@@ -2,6 +2,10 @@ $(document).ready(function() {
 
 var foods = [];
 
+
+
+
+
 $(".large").click(function(event) {
 
   event.preventDefault();
