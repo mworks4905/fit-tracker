@@ -20,6 +20,8 @@ exports.up = function(knex) {
       .notNullable();
     table.boolean('n_water')
       .notNullable();
+    table.boolean('given_bonus_pts')
+      .notNullable();
     table.timestamps(true, true);
   });
 };

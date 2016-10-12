@@ -9,7 +9,8 @@ exports.seed = function(knex) {
         a_health: false,
         a_water: false,
         n_health: true,
-        n_water: true
+        n_water: true,
+        given_bonus_pts: false
       }]);
     });
 };
