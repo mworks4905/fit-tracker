@@ -4,6 +4,7 @@ var knex = require('../knex');
 var cookieSession = require('cookie-session');
 var total = 0;
 var day = 0;
+var bonusPts = false;
 var timeOfDay = ['Morning', 'Afternoon', 'Evening'];
 
 router.get('/', (req, res, next) => {
@@ -13,6 +14,10 @@ router.get('/', (req, res, next) => {
   .then((user) => {
     total = user[0].tot_pts;
     day = user[0].day_pts;
+    if(day >= 10000){
+      bonusPts = true;
+      console.log(bonusPts);
+    }
     res.render('day', {
       points: user[0].tot_pts,
       dailyPoints: user[0].day_pts,
@@ -20,6 +25,8 @@ router.get('/', (req, res, next) => {
     })
   })
 })
+
+
 
 router.put('/', (req, res, next) => {
     if (req.body.m_health && req.body.value) {
@@ -52,6 +59,7 @@ function giveUserPts(req, res, next){
   }, '*')
   .then((user) => {
     day = user[0].day_pts;
+    console.log(bonusPts);
     knex('users')
     .where('id', req.session.userInfo.id)
     .update({
@@ -71,7 +79,39 @@ function giveUserPts(req, res, next){
     })
   })
 }
-// check current time 
+
+// function bonusPts(req, res, next){
+//   //check var here with stored daily points value
+//   knex('day')
+//   .where('user_id', req.session.userInfo.id)
+//   .orderBy('id', 'desc')
+//   .limit(1)
+//   .update({
+//     day_pts: day + 25
+//   }, '*')
+//   .then((user) => {
+//     day = user[0].day_pts;
+//     knex('users')
+//     .where('id', req.session.userInfo.id)
+//     .update({
+//       tot_pts: total + 25
+//     }, '*')
+//     .then((user1) => {
+//       total = user1[0].tot_pts;
+//       knex('users')
+//       .innerJoin('day', 'users.id', 'day.user_id')
+//       .where('users.id', req.session.userInfo.id)
+//       .then((user2) => {
+//         res.render('day', {
+//           points: user2[0].tot_pts,
+//           dailyPoints: user2[0].day_pts
+//         })
+//       })
+//     })
+//   })
+// }
+
+// check current time
 function localTime(){
   var timeInMs = Date.now();
   var time = new Date(timeInMs);
@@ -87,5 +127,7 @@ function localTime(){
     return timeOfDay[2]
   }
 };
+
+
 
 module.exports = router;
