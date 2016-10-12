@@ -23,4 +23,32 @@ router.get('/', (req, res, next) => {
 
 });
 
+router.put('/', (req, res, next) => {
+    let cheat = req.body.cheatValue
+    let points = 0
+    console.log(req.body)
+    if (cheat === '1') {
+        points = 100
+    } else if (cheat === '2') {
+        points = 300
+    } else {
+        points = 500
+    }
+    return knex('users')
+        .where('users.id', req.session.userInfo.id).first().then(user => {
+          return user.tot_pts - points
+        })
+        .then(score => {
+          return knex('users').where('users.id', req.session.userInfo.id).first()
+          .update('tot_pts', score)
+        })
+        .then(() => {
+            res.end();
+        })
+        .catch((err) => {
+            next(err);
+        });
+});
+
+
 module.exports = router;
