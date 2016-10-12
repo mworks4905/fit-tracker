@@ -4,18 +4,19 @@ var knex = require('../knex');
 var cookieSession = require('cookie-session');
 var total = 0;
 var day = 0;
+var timeOfDay = ['Morning', 'Afternoon', 'Evening'];
 
 router.get('/', (req, res, next) => {
   knex('users')
   .innerJoin('day', 'users.id', 'day.user_id')
   .where('users.id', req.session.userInfo.id)
   .then((user) => {
-    console.log(user[0]);
     total = user[0].tot_pts;
     day = user[0].day_pts;
     res.render('day', {
       points: user[0].tot_pts,
-      dailyPoints: user[0].day_pts
+      dailyPoints: user[0].day_pts,
+      TOD: localTime()
     })
   })
 })
@@ -70,33 +71,21 @@ function giveUserPts(req, res, next){
     })
   })
 }
+// check current time 
+function localTime(){
+  var timeInMs = Date.now();
+  var time = new Date(timeInMs);
+  var hours = time.getHours();
 
-// router.get('/', (req, res, next) => {
-//   // check current time
-//   var localTime = () => {
-//     var timeInMs = Date.now();
-//     var time = new Date(timeInMs);
-//     var hours = time.getHours();
-//     return hours;
-//   };
-//   //console.log(localTime());
-//
-//   if(hours >= 0 && hours < 11){
-//     //use handlebars to send the text for MORNING
-//     res.send('morning')//replace with morning tab image
-//   };
-//   else if(hours >= 11 && hours < 14){
-//     //use handlebars to send the text for AFTERNOON
-//     res.send('afternoon')//replace with afternoon tab image
-//   };
-//   else{
-//     //use handlebars to send the text for EVENING
-//     res.send('evening')//replace with evening tab image
-//   };
-// });
-//
-// // router.post('/', (req, res, next) => {
-// //
-// // })
+  if(hours >= 0 && hours < 11){
+    return timeOfDay[0]
+  }
+  else if(hours >= 11 && hours < 14){
+    return timeOfDay[1]
+  }
+  else{
+    return timeOfDay[2]
+  }
+};
 
 module.exports = router;
