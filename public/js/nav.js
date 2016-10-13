@@ -1,7 +1,6 @@
 $(document).ready(function(){
   $('.logout').click((e) => {
     e.preventDefault();
-
     $.ajax({
         url: `/`,
         method: 'DELETE',
