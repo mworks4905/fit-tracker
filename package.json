@@ -16,7 +16,7 @@
     "cookie-session": "^2.0.0-alpha.1",
     "debug": "~2.2.0",
     "dotenv": "^2.0.0",
-    "express": "~4.13.4",
+    "express": "~4.14.0",
     "hbs": "^4.0.1",
     "jade": "~1.11.0",
     "knex": "^0.12.2",
@@ -26,6 +26,6 @@
     "serve-favicon": "~2.3.0"
   },
   "engines": {
-    "node": "v6.3.1"
+    "node": "v6.8.0"
   }
 }
