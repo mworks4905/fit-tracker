@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         for (let i = 0; i < 2; i++) {
             let randomVariable = foods[Math.floor(Math.random() * foods.length)];
-            let $col = $('<div class="col s12 m4 l4 center">');
+            let $col = $('<div class="col s12 m4 l4">');
             let $card = $('<div class="card grey lighten-4">');
             let $content = $('<div class="card-content black-text">');
             let $title = $('<h3 class="card-title">');
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
             $col.append($card);
 
-            $('#food-cards-' + level).append($col);
+            $('#food-cards-' + level).append($card);
 
         } //for loop end
         chooseCheat()
