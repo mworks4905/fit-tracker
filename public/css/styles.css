@@ -39,3 +39,7 @@ main {
   font-family: Papyrus, fantasy;
   font-weight: bolder;
 }
+
+#summary {
+  color: #39ff2b;
+}
