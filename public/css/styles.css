@@ -29,9 +29,10 @@ main {
 }
 
 #logo {
-  color: #e65100;
-  font-family: Impact, Charcoal, sans-serif;
-  font-style: italic;
+  color: black;
+  font-family: 'Oswald', sans-serif;
+  font-weight: heavy;
+  text-shadow: 2px 2px white;
 }
 
 #motto {
@@ -101,12 +102,23 @@ main {
   opacity: .95;
 }
 
+.collapsible-header {
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
+}
+
+.card-action {
+  font-weight: heavy;
+  font-size: 20px;
+}
+
 #summary {
   color: black;
 }
 
 .points {
   text-align: center;
+  font-family: 'Oswald', sans-serif;
 }
 
 .dailyPoints {
