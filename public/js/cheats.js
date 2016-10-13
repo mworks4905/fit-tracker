@@ -12,7 +12,7 @@ $(document).ready(function() {
             let $content = $('<div class="card-content black-text">');
             let $title = $('<h3 class="card-title">');
             let $establishment = $('<p class="card-establishment">');
-            let $action = $(`<div class="card-action waves-effect choose-cheat" data-innerlevel=${level}>`);
+            let $action = $(`<div class="card-action waves-effect choose-cheat white" data-innerlevel=${level}>`);
 
             $title.text(randomVariable.name);
             $establishment.text(randomVariable.establishment);

@@ -55,7 +55,6 @@ main {
 
 /*levels page*/
 #easy-1 {
-  background-color: #3b5998;
   border-radius: 50%;
   border: 2px solid white;
   height: 80px;
@@ -65,7 +64,6 @@ main {
 }
 
 #easy-2 {
-  background-color: #e65100;
   border-radius: 50%;
   border: 2px solid white;
   height: 80px;
@@ -76,7 +74,6 @@ main {
 }
 
 #easy-3 {
-  background-color: #43AF11;
   border-radius: 50%;
   border: 2px solid white;
   height: 80px;
