@@ -7,16 +7,16 @@ var day = 0;
 var timeOfDay = ['Morning', 'Afternoon', 'Evening'];
 var bonusPts = false;
 var stuffs = `<ul id='nav-mobile' class="right hide-on-med-and-down">
-  <li><a class="logout" href="/">Log Out</a></li>
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
 </ul>
-<ul id="nav-mobile" class="right hide-on-med-and-down">
-  <li><a href="day">Day</a></li>
-</ul>
-<ul id="nav-mobile" class="right hide-on-med-and-down">
-  <li><a href="activities">Activities</a></li>
-</ul>
-<ul id="nav-mobile" class="right hide-on-med-and-down">
-  <li><a href="cheats">Cheats</a></li>
+<ul class="side-nav" id="mobile-demo">
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
 </ul>`;
 
 
