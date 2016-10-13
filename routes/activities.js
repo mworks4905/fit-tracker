@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
-
+const cookieSession = require('cookie-session');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if (req.session.userInfo === undefined) {
@@ -21,14 +21,10 @@ router.get('/', function(req, res, next) {
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="cheats">Cheats</a></li>
-    </ul>`,
-    });
+    </ul>`
+    })
   }
-});
-
-router.get('/', (req, res, next) => {
-  res.render('activities');
-});
+})
 
 router.post('/', (req, res, next) => {
   const data = req.body;

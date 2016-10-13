@@ -7,7 +7,6 @@ $(document).ready(function() {
 
         for (let i = 0; i < 2; i++) {
             let randomVariable = foods[Math.floor(Math.random() * foods.length)];
-            // console.log(randomVariable);
             let $col = $('<div class="col s12 m4 l4">');
             let $card = $('<div class="card grey lighten-4">');
             let $content = $('<div class="card-content black-text">');
@@ -24,7 +23,7 @@ $(document).ready(function() {
 
             $col.append($card);
 
-            $('#food-cards-' + level).append($col);
+            $('#food-cards-' + level).append($card);
 
         } //for loop end
         chooseCheat()
@@ -40,9 +39,7 @@ $(document).ready(function() {
                 url: `/cheats`,
                 method: 'PUT',
                 dataType: 'json',
-                data: JSON.stringify({
-                    cheatValue
-                }),
+                data: JSON.stringify({cheatValue}),
             }).done(() => {
                 window.location = '/day'
             }).fail(err => {
@@ -54,7 +51,7 @@ $(document).ready(function() {
     // Nutrionix API call - on button click
     $(".large").click(function() {
 
-        let level = $(this).data("level")
+        let level = $(this).data("level");
 
         $.ajax({
             method: 'GET',
@@ -68,8 +65,8 @@ $(document).ready(function() {
                         name: oneFood.fields.item_name,
                         establishment: oneFood.fields.brand_name
                     };
-                    foods.push(food)
-                } //  for loop
+                    foods.push(food);
+                } //  for loop end
                 renderFoods(level);
             },
             error: function(err) {

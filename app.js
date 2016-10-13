@@ -15,6 +15,7 @@ var levels = require('./routes/levels');
 var day = require('./routes/day');
 var activities = require('./routes/activities');
 var cheats = require('./routes/cheats');
+var users = require('./routes/users')
 const cookieSession = require('cookie-session');
 
 var app = express();
@@ -43,7 +44,7 @@ app.use('/levels', levels);
 app.use('/day', day);
 app.use('/activities', activities);
 app.use('/cheats', cheats);
-
+app.use('/users', users);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -88,9 +89,7 @@ app.use(function(err, req, res, next) {
 
 // const port = process.env.PORT || 8000;
 // app.listen(port, () => {
-//
-//   console.log('Listening on port', port);
-//
+// console.log('Listening on port', port);
 // });
 
 module.exports = app;
