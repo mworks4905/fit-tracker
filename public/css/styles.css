@@ -8,8 +8,8 @@
 }
 
 body {
-  background-color: #000000;
-  background-size: cover;
+  background-color: white;
+  /*background-size: cover;
   background-image: url("../images/fitness.jpg");
   background-position: top center;
   background-repeat: no-repeat;
@@ -17,8 +17,20 @@ body {
   height: 100%;
   width: 100%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto;*/
 }
+
+/*#main_bg_img {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}*/
 
 main {
   flex: 1 0 auto;
@@ -38,4 +50,95 @@ main {
   color: #43AF11;
   font-family: Papyrus, fantasy;
   font-weight: bolder;
+}
+
+
+/*levels page*/
+#easy-1 {
+  background-color: #3b5998;
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  color: white;
+  display: inline-block;
+}
+
+#easy-2 {
+  background-color: #e65100;
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+}
+
+#easy-3 {
+  background-color: #43AF11;
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  color: white;
+  display: inline-block;
+}
+
+.redirect-button {
+  background-color: white;
+  color: red;
+  font-size: 30px;
+  top-padding: 40px;
+}
+
+
+/*cheats pages*/
+.card .card-content .card-title {
+  line-height: 25px !important;
+}
+
+.card-title {
+  font-weight: 600 !important;
+}
+
+.card .card-content p {
+  font-weight: 600 !important;
+  font-size: 20px;
+}
+
+.grey.lighten-4 {
+  opacity: .95;
+}
+
+#summary {
+  color: white;
+}
+
+.points {
+  text-align: center;
+}
+
+.dailyPoints {
+  text-align: center;
+}
+
+.dayBtns {
+  text-align: center;
+}
+
+.TOD {
+  text-align: center;
+}
+
+.switches {
+  text-align: center;
+}
+
+.daySubmit {
+  text-align: center;
+}
+
+.dayActivities {
+  text-align: center;
 }

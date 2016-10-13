@@ -10,16 +10,20 @@ router.get('/', function(req, res, next) {
   if (req.session.userInfo === undefined) {
     res.redirect('index');
   } else {
-    res.render('activities')
-  }
-  // res.render('index', {
-  //   title: 'Express'
-  // });
-});
+    res.render('activities', {stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
+<li><a class="logout" href="/">Log Out</a></li>
+</ul>
+<ul id="nav-mobile" class="right hide-on-med-and-down">
+<li><a href="day">Day</a></li>
+</ul>
+<ul id="nav-mobile" class="right hide-on-med-and-down">
+<li><a href="activities">Activities</a></li>
+</ul>
+<ul id="nav-mobile" class="right hide-on-med-and-down">
+<li><a href="cheats">Cheats</a></li>
+</ul>`})
+}})
 
-router.get('/', (req, res, next) => {
-  res.render('activities');
-})
 
 router.post('/', (req, res, next) => {
   console.log("testing POST route");
