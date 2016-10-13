@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         for (let i = 0; i < 2; i++) {
             let randomVariable = foods[Math.floor(Math.random() * foods.length)];
-            let $col = $('<div class="col s12 m4 l4">');
+            let $col = $('<div class="col s12 m4 l4 center">');
             let $card = $('<div class="card grey lighten-4">');
             let $content = $('<div class="card-content black-text">');
             let $title = $('<h3 class="card-title">');
@@ -66,7 +66,7 @@ $(document).ready(function() {
                         establishment: oneFood.fields.brand_name
                     };
                     foods.push(food);
-                } //  for loop
+                } //  for loop end
                 renderFoods(level);
             },
             error: function(err) {
