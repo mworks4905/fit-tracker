@@ -15,61 +15,73 @@
     <div class="container">
         <div class="row center">
             <div class="col m6 s12">
-                <div class="card green hoverable">
+                <div class="card hoverable z-depth-5 green">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="images/running2.jpg">
+                        <img class="activator" src="images/running.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator orange-text text-darken-4">Running<i class="material-icons right">more_vert</i></span>
-                        <p>Click</p>
+                        <span class="card-title activator orange-text text-darken-4">
+                          <h4>-- Running --</h4>
+                          <i class="material-icons right">more_vert</i>
+                        </span>
+                        <h5>Click Image</h5>
                     </div>
-                    <div class="card-reveal">
-                        <span class="card-title orange-text text-darken-4">Running<i class="material-icons right">close</i></span>
-                        <form method="post" action="/activities"  accept-charset="utf-8">
+                    <div class="card-reveal cyan lighten-3">
+                        <span class="card-title orange-text text-darken-4"><h4 style='font-style: italic;'>Running</h4><i class="material-icons right">close</i></span>
+                        <br>
+                        <form method="post" action="/activities" accept-charset="utf-8">
                             <div style="display:none;">
-                              <input type="hidden" name="activity" value="running"></div>
-                            <div class="input-field">
-                              <label for="time" class="time">Time (10 min increments)</label>
-                              <br>
-                              <input type="number" value="10" min="0" name="time" required="required">
+                                <input type="hidden" name="activity" value="running"></div>
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="time" class="time"><h5>Time (minutes)</h5></label>
+                                <br>
+                                <input type="number" value="10" min="0" name="time" required="required" style='font-size: 24px;' class="digits">
                             </div>
                             <br>
-                            <div class="input-field">
-                              <label for="distance">Distance (# of miles)</label>
-                              <br>
-                              <input type="number" value="1" min="0"  name="distance" required="required" >
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="distance"><h5>Distance (miles)</h5></label>
+                                <br>
+                                <input type="number" value="1" min="0" name="distance" required="required" style='font-size: 24px;' class="digits">
                             </div>
-                            <button type="submit" class="activity-btn">submit</a></button>
+                            <section class="gradient">
+                                <button type="submit" class="activity-btn" class="button" class="hover" class="active"><h5>SUBMIT</h5></button>
+                            </section>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col m6 s12">
-                <div class="card green hoverable">
+                <div class="card green hoverable z-depth-5">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="images/biking.jpg">
+                        <img class="activator" src="images/biking2.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator orange-text text-darken-4">Biking<i class="material-icons right">more_vert</i></span>
-                        <p>Click</p>
+                        <span class="card-title activator orange-text text-darken-4">
+                          <h4>-- Biking --</h4>
+                          <i class="material-icons right">more_vert</i>
+                        </span>
+                        <h5>Click Image</h5>
                     </div>
-                    <div class="card-reveal">
-                        <span class="card-title orange-text text-darken-4">Biking<i class="material-icons right">close</i></span>
-                        <form method="post" action="/activities"  accept-charset="utf-8">
+                    <div class="card-reveal cyan lighten-3">
+                        <span class="card-title orange-text text-darken-4"><h4 style='font-style: italic;'>Biking</h4><i class="material-icons right">close</i></span>
+                        <br>
+                        <form method="post" action="/activities" accept-charset="utf-8">
                             <div style="display:none;">
-                              <input type="hidden" name="activity" value="biking"></div>
-                            <div class="input-field">
-                              <label for="time" name="time" class="time">Time (10 min increments)</label>
-                              <br>
-                              <input type="number" value="10" min="0" name="time" required="required">
+                                <input type="hidden" name="activity" value="biking"></div>
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="time" class="time"><h5>Time (minutes)</h5></label>
+                                <br>
+                                <input type="number" value="10" min="0" name="time" required="required" style='font-size: 24px;' class="digits">
                             </div>
                             <br>
-                            <div class="input-field">
-                              <label for="distance">Distance (# of miles)</label>
-                              <br>
-                              <input type="number" value="1" min="0"  name="distance" required="required" >
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="distance"><h5>Distance (miles)</h5></label>
+                                <br>
+                                <input type="number" value="1" min="0" name="distance" required="required" style='font-size: 24px;' class="digits">
                             </div>
-                            <button type="submit" class="activity-btn">submit</button>
+                            <section class="gradient">
+                                <button type="submit" class="activity-btn" class="button" class="hover" class="active"><h5>SUBMIT</h5></button>
+                            </section>
                         </form>
                     </div>
                 </div>
@@ -77,69 +89,151 @@
         </div>
         <div class="row center">
             <div class="col m6 s12">
-                <div class="card green hoverable">
+                <div class="card green hoverable z-depth-5">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="images/walking.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator orange-text text-darken-4">Walking<i class="material-icons right">more_vert</i></span>
-                        <p>Click</p>
+                        <span class="card-title activator orange-text text-darken-4">
+                          <h4>-- Walking --</h4>
+                          <i class="material-icons right">more_vert</i>
+                        </span>
+                        <h5>Click Image</h5>
                     </div>
-                    <div class="card-reveal">
-                        <span class="card-title orange-text text-darken-4">Walking<i class="material-icons right">close</i></span>
-                        <form method="post" action="/activities"  accept-charset="utf-8">
+                    <div class="card-reveal cyan lighten-3">
+                        <span class="card-title orange-text text-darken-4"><h4 style='font-style: italic;'>Walking</h4><i class="material-icons right">close</i></span>
+                        <br>
+                        <form method="post" action="/activities" accept-charset="utf-8">
                             <div style="display:none;">
-                              <input type="hidden" name="activity" value="walking"></div>
-                            <div class="input-field">
-                              <label for="time" class="time">Time (10 min increments)</label>
-                              <br>
-                              <input type="number" value="10" min="0" name="time" required="required">
+                                <input type="hidden" name="activity" value="walking"></div>
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="time" class="time"><h5>Time (minutes)</h5></label>
+                                <br>
+                                <input type="number" value="10" min="0" name="time" required="required" style='font-size: 24px;' class="digits">
                             </div>
                             <br>
-                            <div class="input-field">
-                              <label for="distance">Distance (# of miles)</label>
-                              <br>
-                              <input type="number" value="1" min="0"  name="distance" required="required" >
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="distance"><h5>Distance (miles)</h5></label>
+                                <br>
+                                <input type="number" value="1" min="0" name="distance" required="required" style='font-size: 24px;' class="digits">
                             </div>
-                            <button type="submit" class="activity-btn">submit</button>
+                            <section class="gradient">
+                                <button type="submit" class="activity-btn" class="button" class="hover" class="active"><h5>SUBMIT</h5></button>
+                            </section>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col m6 s12">
-                <div class="card green hoverable">
+                <div class="card green hoverable z-depth-5">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="images/hiking.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator orange-text text-darken-4">Hiking<i class="material-icons right">more_vert</i></span>
-                        <p>Click</p>
+                        <span class="card-title activator orange-text text-darken-4">
+                          <h4>-- Hiking --</h4>
+                          <i class="material-icons right">more_vert</i>
+                        </span>
+                        <h5>Click Image</h5>
                     </div>
-                    <div class="card-reveal">
-                        <span class="card-title orange-text text-darken-4">Hiking<i class="material-icons right">close</i></span>
-                        <form method="post" action="/activities"  accept-charset="utf-8">
+                    <div class="card-reveal cyan lighten-3">
+                        <span class="card-title orange-text text-darken-4"><h4 style='font-style: italic;'>Hiking</h4><i class="material-icons right">close</i></span>
+                        <br>
+                        <form method="post" action="/activities" accept-charset="utf-8">
                             <div style="display:none;">
-                              <input type="hidden" name="activity" value="hiking"></div>
-                            <div class="input-field">
-                              <label for="time" class="time">Time (10 min increments)</label>
-                              <br>
-                              <input type="number" value="10" min="0" name="time" required="required">
+                                <input type="hidden" name="activity" value="hiking"></div>
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="time" class="time"><h5>Time (minutes)</h5></label>
+                                <br>
+                                <input type="number" value="10" min="0" name="time" required="required" style='font-size: 24px;' class="digits">
                             </div>
                             <br>
-                            <div class="input-field">
-                              <label for="distance">Distance (# of miles)</label>
-                              <br>
-                              <input type="number" value="1" min="0"  name="distance" required="required" >
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="distance"><h5>Distance (miles)</h5></label>
+                                <br>
+                                <input type="number" value="1" min="0" name="distance" required="required" style='font-size: 24px;' class="digits">
                             </div>
-                            <button type="submit" class="activity-btn">submit</button>
+                            <section class="gradient">
+                                <button type="submit" class="activity-btn" class="button" class="hover" class="active"><h5>SUBMIT</h5></button>
+                            </section>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col m6 s12">
+                <div class="card green hoverable z-depth-5">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="images/rollerblading.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator orange-text text-darken-4">
+                          <h4>-- Rollerblading --</h4>
+                          <i class="material-icons right">more_vert</i>
+                        </span>
+                        <h5>Click Image</h5>
+                    </div>
+                    <div class="card-reveal cyan lighten-3">
+                        <span class="card-title orange-text text-darken-4"><h4 style='font-style: italic;'>Rollerblading</h4><i class="material-icons right">close</i></span>
+                        <br>
+                        <form method="post" action="/activities" accept-charset="utf-8">
+                            <div style="display:none;">
+                                <input type="hidden" name="activity" value="rollerblading"></div>
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="time" class="time"><h5>Time (minutes)</h5></label>
+                                <br>
+                                <input type="number" value="10" min="0" name="time" required="required" style='font-size: 24px;' class="digits">
+                            </div>
+                            <br>
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="distance"><h5>Distance (miles)</h5></label>
+                                <br>
+                                <input type="number" value="1" min="0" name="distance" required="required" style='font-size: 24px;' class="digits">
+                            </div>
+                            <section class="gradient">
+                                <button type="submit" class="activity-btn" class="button" class="hover" class="active"><h5>SUBMIT</h5></button>
+                            </section>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col m6 s12">
+                <div class="card green hoverable z-depth-5">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="images/skateboarding.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator orange-text text-darken-4">
+                          <h4>-- Skating --</h4>
+                          <i class="material-icons right">more_vert</i>
+                        </span>
+                        <h5>Click Image</h5>
+                    </div>
+                    <div class="card-reveal cyan lighten-3">
+                        <span class="card-title orange-text text-darken-4"><h4 style='font-style: italic;'>Skating</h4><i class="material-icons right">close</i></span>
+                        <br>
+                        <form method="post" action="/activities" accept-charset="utf-8">
+                            <div style="display:none;">
+                                <input type="hidden" name="activity" value="skating"></div>
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="time" class="time"><h5>Time (minutes)</h5></label>
+                                <br>
+                                <input type="number" value="10" min="0" name="time" required="required" style='font-size: 24px;' class="digits">
+                            </div>
+                            <br>
+                            <div class="input-field indigo-text text-accent-4">
+                                <label for="distance"><h5>Distance (miles)</h5></label>
+                                <br>
+                                <input type="number" value="1" min="0" name="distance" required="required" style='font-size: 24px;' class="digits">
+                            </div>
+                            <section class="gradient">
+                                <button type="submit" class="activity-btn" class="button" class="hover" class="active"><h5>SUBMIT</h5></button>
+                            </section>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-    </script>
-    <script type="text/javascript" src="activities.js">
-    </script> -->
 </div>
