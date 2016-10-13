@@ -1,41 +1,42 @@
 <script src="js/day.js"></script>
 <script src = "js/nav.js"></script>
-<div class="row">
 
 <!--- Points button that leads to cheats page -->
-<a class="waves-effect waves-light btn" href="/cheats">
-  <div class="points">
-    <h2>
-      {{points}}
-    </h2>
-      <br>
-      <p>
-        <h4>Click to spend your points!</h4>
-      </p>
-  </div>
-</a>
+<div class="points">
+    <a href="/cheats">
+        <h2>{{points}}</h2>
+        <span>Click to spend your points!</span>
+    </a>
+</div>
 
   <div class="dailyPoints">
     <h3>{{dailyPoints}}/400</h3>
   </div>
+
+<div class="dayBtns">
   <div class="row">
     <a class="waves-effect waves-light btn m-btn orange">Morning</a>
     <a class="waves-effect waves-light btn a-btn green">Afternoon</a>
     <a class="waves-effect waves-light btn e-btn blue">Evening</a>
   </div>
-  <div class="TOD">
-    <h4>{{TOD}}</h4>
-  </div>
+</div>
+
+<div class="TOD">
+  <h4>{{TOD}}</h4>
+</div>
+
 <!--- Slider Buttons -->
-    {{{switches}}}
+<div class="switches">
+  {{{switches}}}
+</div>
+<br>
+
 <!--- Submit button -->
-<div class="col s12 m12 l12">
+<div class="daySubmit">
   <a class="waves-effect waves-light btn" href="/day"><i class="material-icons left">cloud</i>Submit</a>
 </div>
+<br>
 <!--- Activities Button -->
-<div class="col s12 m12 l12">
+<div class="dayActivities">
   <a class="waves-effect waves-light btn" href="/activities"><i class="material-icons left">cloud</i>Activities</a>
-</div>
-
-
 </div>

@@ -1568,7 +1568,7 @@ function localTime() {
 
  if (hours >= 0 && hours < 11) {
   return timeOfDay[0]
- } else if (hours >= 11 && hours < 14) {
+} else if (hours >= 11 && hours < 16) {
   return timeOfDay[1]
  } else {
   return timeOfDay[2]

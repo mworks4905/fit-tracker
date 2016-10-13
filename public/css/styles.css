@@ -114,3 +114,31 @@ main {
 #summary {
   color: white;
 }
+
+.points {
+  text-align: center;
+}
+
+.dailyPoints {
+  text-align: center;
+}
+
+.dayBtns {
+  text-align: center;
+}
+
+.TOD {
+  text-align: center;
+}
+
+.switches {
+  text-align: center;
+}
+
+.daySubmit {
+  text-align: center;
+}
+
+.dayActivities {
+  text-align: center;
+}
