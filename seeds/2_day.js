@@ -29,7 +29,7 @@ exports.seed = function(knex) {
       },
       {
         user_id: 4,
-        day_pts: 50,
+        day_pts: 350,
         m_health: true,
         m_water: true,
         a_health: false,
