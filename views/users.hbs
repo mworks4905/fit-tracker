@@ -1,0 +1,19 @@
+<script src="js/users.js"></script>
+<div class="container">
+  <h3>Users</h3>
+  <table class="table table-bordered table-striped white">
+          <th>Email</th>
+          <th>Level</th>
+          <th>Total Points</th>
+        {{#each userlist}}
+          <tr>
+            <td>{{this.email}}</td>
+            <td>{{this.lvl}}</td>
+            <td>{{this.tot_pts}}</td>
+            <td>
+              <a id="{{this.email}}" class="trash btn-floating btn-large waves-effect waves-light"><i class="material-icons">delete</i></a>
+            </td>
+          </tr>
+        {{/each}}
+  </table>
+</div>

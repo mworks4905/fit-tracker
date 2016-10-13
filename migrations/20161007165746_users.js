@@ -10,6 +10,8 @@ exports.up = function(knex) {
       .unique();
     table.specificType('hash', 'character(60)')
       .notNullable();
+    table.boolean('is_admin')
+      .notNullable();
     table.text('accessToken').unique();
     table.timestamps(true, true);
   });

@@ -11,9 +11,9 @@ router.put('/', (req, res, next) => {
     let points = 0;
 
     if (level === '1') {
-        points = 500
+        points = 200
     } else if (level === '2') {
-        points = 250
+        points = 100
     } else {
         points = 0
     }

@@ -11,17 +11,17 @@ router.get('/', (req, res, next) => {
  if (req.session.userInfo !== undefined) {
   res.render('index', {
    stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li class="logout"><a class="logout">Log Out</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="day">Day</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="activities">Activities</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="cheats">Cheats</a></li>
-    </ul>`
+            <li class="logout"><a class="logout">Log Out</a></li>
+          </ul>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="day">Day</a></li>
+          </ul>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="activities">Activities</a></li>
+          </ul>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="cheats">Cheats</a></li>
+          </ul>`
   })
  } else {
   res.render('index')
@@ -86,7 +86,11 @@ router.post('/', (req, res) => {
       if (bcrypt.compareSync(req.body.password, user[0].hash)) {
        delete user[0].hash;
        req.session.userInfo = user[0];
-       res.redirect('day');
+       if (user[0].is_admin) {
+         res.redirect('users');
+       } else {
+        res.redirect('day');
+       }
       } else {
        res.render('index', {
         error: 'blahblah',
@@ -151,7 +155,8 @@ router.post('/', (req, res) => {
         tot_pts: 0,
         lvl: 0,
         email: req.body.email,
-        hash: bcrypt.hashSync(req.body.password, 12)
+        hash: bcrypt.hashSync(req.body.password, 12),
+        is_admin: false
        })
        .then((user1) => {
         console.log(user1[0]);
@@ -208,7 +213,8 @@ router.post('/', (req, res) => {
        lvl: 0,
        email: req.body.email,
        hash: 'password',
-       accessToken: req.body.accessToken
+       accessToken: req.body.accessToken,
+       is_admin: false
       })
       .then((user1) => {
        knex('day')
@@ -224,7 +230,7 @@ router.post('/', (req, res) => {
          n_water: false,
          tod: 'Morning',
          choice: false,
-         given_bonus_pts:false
+         given_bonus_pts: false
         })
         .then((user2) => {
          delete user1[0].hash;
@@ -245,7 +251,7 @@ router.post('/', (req, res) => {
 })
 
 router.delete('/', (req, res, next) => {
-  req.session = null;
-  res.send('nulled')
+ req.session = null;
+ res.send('nulled')
 });
 module.exports = router;

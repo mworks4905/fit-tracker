@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node ./bin/www",
     "knex": "knex",
-    "heroku-postbuild": "knex migrate:latest",
     "nodemon": "node app.js"
   },
   "dependencies": {
@@ -23,10 +22,9 @@
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
-    "pg": "^6.1.0",
     "serve-favicon": "~2.3.0"
   },
   "engines": {
-    "node": "v6.3.1"
+    "node": "v6.0.0"
   }
 }
