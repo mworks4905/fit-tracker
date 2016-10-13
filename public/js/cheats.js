@@ -12,13 +12,15 @@ $(document).ready(function() {
             let $content = $('<div class="card-content black-text">');
             let $title = $('<h3 class="card-title">');
             let $establishment = $('<p class="card-establishment">');
-            let $action = $(`<div class="card-action waves-effect choose-cheat" data-innerlevel=${level}>`);
+            let $calories = $('<p class="card-calories">')
+            let $action = $(`<div class="card-action waves-effect choose-cheat black-text" data-innerlevel=${level}>`);
 
             $title.text(randomVariable.name);
+            $calories.text(randomVariable.calories + " calories")
             $establishment.text(randomVariable.establishment);
             $action.text('Click to Cheat');
 
-            $content.append($title, $establishment);
+            $content.append($title, $calories, $establishment);
             $card.append($content, $action)
 
             $col.append($card);
@@ -63,7 +65,8 @@ $(document).ready(function() {
                     const oneFood = results[i];
                     const food = {
                         name: oneFood.fields.item_name,
-                        establishment: oneFood.fields.brand_name
+                        establishment: oneFood.fields.brand_name,
+                        calories: oneFood.fields.nf_calories
                     };
                     foods.push(food);
                 } //  for loop end

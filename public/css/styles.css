@@ -1,44 +1,138 @@
-      .icon-block {
-      padding: 0 15px;
-    }
+.icon-block {
+  padding: 0 15px;
+}
 
-    .icon-block .material-icons {
-      font-size: inherit;
-      color: #666666;
-    }
+.icon-block .material-icons {
+  font-size: inherit;
+  color: #666666;
+}
 
-    body {
-      background-color: white;
-      background-size: cover;
-      background-image: url("../images/fitness_6.jpg");
-      background-position: top center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      height: 100%;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
+body {
+  background-color: white;
+  background-size: cover;
+  background-image: url("../images/fitness_6.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    main {
-      flex: 1 0 auto;
-    }
+main {
+  flex: 1 0 auto;
+}
 
-    #download-button {
-      background-color: #3b5998;
-    }
+#download-button {
+  background-color: #3b5998;
+}
 
-    #logo {
-      color: #e65100;
-      font-family: Impact, Charcoal, sans-serif;
-      font-style: italic;
-    }
+#logo {
+  color: #e65100;
+  font-family: Impact, Charcoal, sans-serif;
+  font-style: italic;
+}
 
-    #motto {
-      color: #43AF11;
-      font-family: Papyrus, fantasy;
-      font-weight: bolder;
-    }
+#motto {
+  color: #43AF11;
+  font-family: Papyrus, fantasy;
+  font-weight: bolder;
+}
+
+
+/*levels page*/
+#easy-1 {
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  color: white;
+  display: inline-block;
+}
+
+#easy-2 {
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+}
+
+#easy-3 {
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  color: white;
+  display: inline-block;
+}
+
+.redirect-button {
+  background-color: white;
+  color: red;
+  font-size: 30px;
+  top-padding: 40px;
+}
+
+
+/*cheats pages*/
+.card .card-content .card-title {
+  line-height: 25px !important;
+}
+
+.card-title {
+  font-weight: 600 !important;
+}
+
+.card .card-content p {
+  font-weight: 600 !important;
+  font-size: 20px;
+  line-height: 2px !important;
+}
+
+.card .card-content .card-establishment {
+  font-weight: 400 !important;
+}
+
+.grey.lighten-4 {
+  opacity: .95;
+}
+
+#summary {
+  color: black;
+}
+
+.points {
+  text-align: center;
+}
+
+.dailyPoints {
+  text-align: center;
+}
+
+.dayBtns {
+  text-align: center;
+}
+
+.TOD {
+  text-align: center;
+}
+
+.switches {
+  text-align: center;
+}
+
+.daySubmit {
+  text-align: center;
+}
+
+.dayActivities {
+  text-align: center;
+}
+
     /*activities page css*/
 
     section.gradient button {
