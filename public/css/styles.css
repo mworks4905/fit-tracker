@@ -8,8 +8,8 @@
 }
 
 body {
-  background-color: #000000;
-  background-size: cover;
+  background-color: white;
+  /*background-size: cover;
   background-image: url("../images/fitness.jpg");
   background-position: top center;
   background-repeat: no-repeat;
@@ -17,8 +17,20 @@ body {
   height: 100%;
   width: 100%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto;*/
 }
+
+/*#main_bg_img {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}*/
 
 main {
   flex: 1 0 auto;
@@ -41,5 +53,5 @@ main {
 }
 
 #summary {
-  color: #39ff2b;
+  color: white;
 }
