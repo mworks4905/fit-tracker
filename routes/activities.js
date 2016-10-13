@@ -1,37 +1,36 @@
-var express = require('express');
-var router = express.Router();
+'use strict';
+
+const express = require('express');
+const router = express.Router();
 const knex = require('../knex');
-var cookieSession = require('cookie-session');
-
-var points = 0
-
+const cookieSession = require('cookie-session');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if (req.session.userInfo === undefined) {
     res.redirect('index');
   } else {
-    res.render('activities', {stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
+    res.render('activities', {
+      stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
 <li><a class="logout" href="/">Log Out</a></li>
-</ul>
-<ul id="nav-mobile" class="right hide-on-med-and-down">
 <li><a href="day">Day</a></li>
-</ul>
-<ul id="nav-mobile" class="right hide-on-med-and-down">
 <li><a href="activities">Activities</a></li>
-</ul>
-<ul id="nav-mobile" class="right hide-on-med-and-down">
 <li><a href="cheats">Cheats</a></li>
-</ul>`})
-}})
-
+</ul>
+<ul class="side-nav" id="mobile-demo">
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>`
+    })
+  }
+})
 
 router.post('/', (req, res, next) => {
-  console.log("testing POST route");
-  let data = req.body
-  var points = calcPoints(data.activity, data.time, data.distance)
-  console.log("testing our function. Total Points = " + points);
-  var day = 0;
-  var total = 0;
+  const data = req.body;
+  const points = calcPoints(data.activity, data.time, data.distance);
+  let total = 0;
+
   knex('day')
     .where('user_id', req.session.userInfo.id)
     .orderBy('id', 'desc')
@@ -57,50 +56,55 @@ router.post('/', (req, res, next) => {
                 })
                 .then((user2) => {
                   res.redirect('day');
-                })
-            })
-        })
-    })
+                });
+            });
+        });
+    });
 
+  function activityPts(req, res, next) {
+    knex('day')
+      .where('users_id', req.session.userInfo.id)
+      .update({
+        day_pts: points
+      }, '*');
 
-  // function activityPts(req, res, next) {
-  //   knex('day')
-  //     .where('users_id', req.session.userInfo.id)
-  //     .update({
-  //       day_pts: points
-  //     }, '*')
-  //
-  //   knex('users')
-  //     .where('users.id', req.session.userInfo.id)
-  //     .update({
-  //       tot_pts: points
-  //     }, '*')
-  //     .then(() => {
-  //       res.render('activities');
-  //     })
-  //     .catch((err) => {
-  //       next(err);
-  //     });
-  // };
+    knex('users')
+      .where('users.id', req.session.userInfo.id)
+      .update({
+        tot_pts: points
+      }, '*')
+      .then(() => {
+        res.render('activities');
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
 });
 
 function calcPoints(activity, time, distance, actPts) {
   switch (activity) {
-    case "walking":
+    case 'walking':
       actPts = .5;
       break;
-    case "hiking":
+    case 'hiking':
       actPts = 1;
       break;
-    case "biking":
+    case 'biking':
       actPts = 1.5;
       break;
-    case "running":
+    case 'running':
       actPts = 2;
       break;
+    case 'rollerblading':
+      actPts = 2;
+      break;
+    case 'skating':
+      actPts = 1.5;
+      break;
   }
+
   return Math.floor(actPts * time * distance * 5);
 }
-
 
 module.exports = router;

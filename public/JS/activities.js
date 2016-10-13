@@ -1,7 +1,2 @@
-'use strict'
-
-$(document).ready(() => {
-  // $('select').material_select()
-
-}
-})
+'use strict';
+$(document).ready(() => {});
