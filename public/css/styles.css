@@ -90,6 +90,11 @@ main {
 .card .card-content p {
   font-weight: 600 !important;
   font-size: 20px;
+  line-height: 2px !important;
+}
+
+.card .card-content .card-establishment {
+  font-weight: 400 !important;
 }
 
 .grey.lighten-4 {
