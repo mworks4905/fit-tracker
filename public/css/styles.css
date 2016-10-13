@@ -52,6 +52,65 @@ main {
   font-weight: bolder;
 }
 
+
+/*levels page*/
+#easy-1 {
+  background-color: #3b5998;
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  color: white;
+  display: inline-block;
+}
+
+#easy-2 {
+  background-color: #e65100;
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+}
+
+#easy-3 {
+  background-color: #43AF11;
+  border-radius: 50%;
+  border: 2px solid white;
+  height: 80px;
+  width: 80px;
+  color: white;
+  display: inline-block;
+}
+
+.redirect-button {
+  background-color: white;
+  color: red;
+  font-size: 30px;
+  top-padding: 40px;
+}
+
+
+/*cheats pages*/
+.card .card-content .card-title {
+  line-height: 25px !important;
+}
+
+.card-title {
+  font-weight: 600 !important;
+}
+
+.card .card-content p {
+  font-weight: 600 !important;
+  font-size: 20px;
+}
+
+.grey.lighten-4 {
+  opacity: .95;
+}
+
 #summary {
   color: white;
 }
