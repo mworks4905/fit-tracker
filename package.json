@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "knex": "knex",
     "heroku-postbuild": "knex migrate:latest",
-    "nodemon": "node app.js",
+    "nodemon": "node app.js"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
