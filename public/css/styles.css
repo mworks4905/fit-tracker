@@ -9,19 +9,8 @@
 
 body {
   background-color: white;
-  /*background-size: cover;
-  background-image: url("../images/fitness.jpg");
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100%;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;*/
-}
-
-/*#main_bg_img {
   background-size: cover;
+  background-image: url("../images/fitness_6.jpg");
   background-position: top center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -29,8 +18,7 @@ body {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  z-index: 1;
-}*/
+}
 
 main {
   flex: 1 0 auto;
@@ -112,7 +100,7 @@ main {
 }
 
 #summary {
-  color: white;
+  color: black;
 }
 
 .points {
