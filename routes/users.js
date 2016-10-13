@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
        res.render('users', {
         stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
             <li class="logout"><a class="logout">Log Out</a></li>
-          </ul>`,
+          </ul><ul class="side-nav" id="mobile-demo"><li class="logout"><a class="logout">Log Out</a></ul>`,
          userlist:users
        })
      })

@@ -11,17 +11,17 @@ router.get('/', (req, res, next) => {
  if (req.session.userInfo !== undefined) {
   res.render('index', {
    stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-            <li class="logout"><a class="logout">Log Out</a></li>
-          </ul>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="day">Day</a></li>
-          </ul>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="activities">Activities</a></li>
-          </ul>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="cheats">Cheats</a></li>
-          </ul>`
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>
+<ul class="side-nav" id="mobile-demo">
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>`
   })
  } else {
   res.render('index')
@@ -34,32 +34,32 @@ router.post('/', (req, res) => {
    res.render('index', {
     email: 'email',
     stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a class="logout" href="/">Log Out</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="day">Day</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="activities">Activities</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="cheats">Cheats</a></li>
-    </ul>`
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>
+<ul class="side-nav" id="mobile-demo">
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>`
    })
   } else if (req.body.password === '') {
    res.render('index', {
-    stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a class="logout" >Log Out</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="day">Day</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="activities">Activities</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="cheats">Cheats</a></li>
-    </ul>`,
+    stuff: `<<ul id='nav-mobile' class="right hide-on-med-and-down">
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>
+<ul class="side-nav" id="mobile-demo">
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>`,
     pswd: 'pswd'
    })
   } else {
@@ -70,24 +70,24 @@ router.post('/', (req, res) => {
       res.render('index', {
        error: 'blahblah',
        stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-         <li><a class="logout" href="#">Log Out</a></li>
-       </ul>
-       <ul id="nav-mobile" class="right hide-on-med-and-down">
-         <li><a href="day">Day</a></li>
-       </ul>
-       <ul id="nav-mobile" class="right hide-on-med-and-down">
-         <li><a href="activities">Activities</a></li>
-       </ul>
-       <ul id="nav-mobile" class="right hide-on-med-and-down">
-         <li><a href="cheats">Cheats</a></li>
-       </ul>`
+   <li><a class="logout" href="/">Log Out</a></li>
+   <li><a href="day">Day</a></li>
+   <li><a href="activities">Activities</a></li>
+   <li><a href="cheats">Cheats</a></li>
+   </ul>
+   <ul class="side-nav" id="mobile-demo">
+   <li><a class="logout" href="/">Log Out</a></li>
+   <li><a href="day">Day</a></li>
+   <li><a href="activities">Activities</a></li>
+   <li><a href="cheats">Cheats</a></li>
+   </ul>`
       })
      } else {
       if (bcrypt.compareSync(req.body.password, user[0].hash)) {
        delete user[0].hash;
        req.session.userInfo = user[0];
        if (user[0].is_admin) {
-         res.redirect('users');
+        res.redirect('users');
        } else {
         res.redirect('day');
        }
@@ -95,17 +95,17 @@ router.post('/', (req, res) => {
        res.render('index', {
         error: 'blahblah',
         stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-          <li><a class="logout" href="/">Log Out</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="day">Day</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="activities">Activities</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="cheats">Cheats</a></li>
-        </ul>`
+    <li><a class="logout" href="/">Log Out</a></li>
+    <li><a href="day">Day</a></li>
+    <li><a href="activities">Activities</a></li>
+    <li><a href="cheats">Cheats</a></li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+    <li><a class="logout" href="/">Log Out</a></li>
+    <li><a href="day">Day</a></li>
+    <li><a href="activities">Activities</a></li>
+    <li><a href="cheats">Cheats</a></li>
+    </ul>`
        });
       }
      }
@@ -116,33 +116,33 @@ router.post('/', (req, res) => {
    res.render('index', {
     email: 'email',
     stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a class="logout" href="/">Log Out</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="day">Day</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="activities">Activities</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="cheats">Cheats</a></li>
-    </ul>`
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>
+<ul class="side-nav" id="mobile-demo">
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>`
    })
   } else if (req.body.password === '') {
    res.render('index', {
     pswd: 'pswd',
     body: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-      <li><a class="logout" href="/">Log Out</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="day">Day</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="activities">Activities</a></li>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="cheats">Cheats</a></li>
-    </ul>`
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>
+<ul class="side-nav" id="mobile-demo">
+<li><a class="logout" href="/">Log Out</a></li>
+<li><a href="day">Day</a></li>
+<li><a href="activities">Activities</a></li>
+<li><a href="cheats">Cheats</a></li>
+</ul>`
    })
   } else {
    knex('users')
@@ -184,17 +184,17 @@ router.post('/', (req, res) => {
      } else {
       res.render('index', {
        stuff: `<ul id='nav-mobile' class="right hide-on-med-and-down">
-          <li><a class="logout" href="/">Log Out</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="day">Day</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="activities">Activities</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="cheats">Cheats</a></li>
-        </ul>`,
+   <li><a class="logout" href="/">Log Out</a></li>
+   <li><a href="day">Day</a></li>
+   <li><a href="activities">Activities</a></li>
+   <li><a href="cheats">Cheats</a></li>
+   </ul>
+   <ul class="side-nav" id="mobile-demo">
+   <li><a class="logout" href="/">Log Out</a></li>
+   <li><a href="day">Day</a></li>
+   <li><a href="activities">Activities</a></li>
+   <li><a href="cheats">Cheats</a></li>
+   </ul>`,
        logged: 'blahblah'
       });
      }
